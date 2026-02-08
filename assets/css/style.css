@@ -34,6 +34,28 @@ body {
 }
 
 /* Navigation */
+
+.nav-category {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.nav-sub {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.3rem 0 0.8rem 0;
+}
+
+.nav-sub li {
+  margin-bottom: 0.3rem;
+}
+
+
+
+
 .nav ul {
   list-style: none;
   padding: 0;
