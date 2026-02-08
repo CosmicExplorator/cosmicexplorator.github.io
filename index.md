@@ -2,4 +2,5 @@
 Ceci est mon premier test GitHub Pages.
 
 
-## Guides disponibles - [Renouvellement certificat Synology](synology-renewal.md)
+## Guides disponibles
+- [Renouvellement certificat Synology](renewCertForDSM.md)
