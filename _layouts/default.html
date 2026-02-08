@@ -6,8 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
 </head>
+
 <body>
   <div class="layout">
+
+    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="site-title">
         <a href="{{ "/" | relative_url }}">Emmanuel B</a>
@@ -19,19 +22,22 @@
             <li class="nav-category">{{ category.title }}</li>
             <ul class="nav-sub">
               {% for item in category.items %}
-                <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+                <li>
+                  <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                </li>
               {% endfor %}
             </ul>
           {% endfor %}
         </ul>
       </nav>
-
     </aside>
 
+    <!-- Main content -->
     <main class="content">
       <h1>{{ page.title }}</h1>
       {{ content }}
     </main>
+
   </div>
 </body>
 </html>
