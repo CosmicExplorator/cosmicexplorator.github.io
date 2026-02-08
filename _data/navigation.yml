@@ -4,7 +4,8 @@
       url: /renewCertForDSM/
     - title: Let's Encrypt - Nextcloud
       url: /renewCertForNextcloud/
-
+    - title: Let's Encrypt - HaOS
+      url: /renewCertForHaOs/
 - title: Domo
   items:
     - title: Home Assistant
