@@ -22,15 +22,19 @@ export OVH_CK="xxxxx"
 ```
 ## 2. Générer le certificat
 
-
-acme.sh  --issue --dns dns_ovh -d $domaine$
+```bash
+source /var/services/homes/emmanuel/.acme.sh/ovh.ini
+/var/services/homes/emmanuel/.acme.sh/acme.sh --issue -d  mydomain.ovh --dns dns_ovh --server letsencrypt
+```
 
 ## 3. Déployer sur Synology
 
-
-acme.sh  --deploy -d $domaine$  --deploy-hook synology_dsm
+```bash
+source /var/services/homes/emmanuel/.acme.sh/ovh.ini
+/var/services/homes/emmanuel/.acme.sh/acme.sh --deploy --home /var/services/homes/emmanuel/.acme.sh/ -d "mydomain.ovh" --deploy-hook synology_dsm --debug 3
+```
 
 
 ## 4. Automatiser
 
-Créer une tâche planifiée dans DSM :
+Créer une tâche planifiée dans DSM.
