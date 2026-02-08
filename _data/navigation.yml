@@ -1,11 +1,9 @@
 - title: iTech
   items:
-    - title: Let's Encrypt
-      items:
-        - title: DSM Synology
-          url: /renewCertForDSM/
-        - title: Nextcloud
-          url: /renewCertForNextcloud/
+    - title: Let's Encrypt - DSM
+      url: /renewCertForDSM/
+    - title: Let's Encrypt - Nextcloud
+      url: /renewCertForNextcloud/
 
 - title: Domo
   items:
