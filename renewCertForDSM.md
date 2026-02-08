@@ -4,7 +4,7 @@ Voici la procédure que j'utilise pour renouveler automatiquement un certificat
 Let's Encrypt via acme.sh et OVH DNS.
 
 
-## 0. Raptriement sur DSM
+## 0. Rapatriement sur DSM
 
 ```
 curl https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh | sh -s -- --install-online --accountemail  "contact@gmail.com" --nocron
