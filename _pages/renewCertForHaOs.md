@@ -11,4 +11,6 @@ permalink: /renewCertForHaOs/
 ## Installation de l'addon Nginx Proxy Manager
 
 
-[Nginx Proxy Manager](https://github.com/hassio-addons/addon-nginx-proxy-manager)
+Lien : [Nginx Proxy Manager](https://github.com/hassio-addons/addon-nginx-proxy-manager)
+
+
