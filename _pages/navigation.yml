@@ -1,0 +1,9 @@
+main:
+  - title: "Accueil"
+    url: /
+  - title: "Certificat Synology"
+    url: /renewCertForDSM/
+  - title: "Domotique"
+    url: /homeassistant/
+  - title: "Astronomie"
+    url: /astronomie/
