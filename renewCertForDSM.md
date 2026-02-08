@@ -3,6 +3,13 @@
 Voici la procédure que j'utilise pour renouveler automatiquement un certificat
 Let's Encrypt via acme.sh et OVH DNS.
 
+
+## 0. Raptriement sur DSM
+
+```
+curl https://raw.githubusercontent.com/acmesh-official/acme.sh/master/acme.sh | sh -s -- --install-online --accountemail  "contact@gmail.com" --nocron
+```
+
 ## 1. Préparer les variables OVH
 
 Créer un fichier `ovh.ini` :
@@ -16,12 +23,12 @@ export OVH_CK="xxxxx"
 ## 2. Générer le certificat
 
 
-acme.sh  --issue --dns dns_ovh -d nas2b.grey.cosmic.ovh
+acme.sh  --issue --dns dns_ovh -d $domaine$
 
 ## 3. Déployer sur Synology
 
 
-acme.sh  --deploy -d nas2b.grey.cosmic.ovh  --deploy-hook synology_dsm
+acme.sh  --deploy -d $domaine$  --deploy-hook synology_dsm
 
 
 ## 4. Automatiser
