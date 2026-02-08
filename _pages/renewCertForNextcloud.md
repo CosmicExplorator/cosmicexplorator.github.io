@@ -1,3 +1,10 @@
+---
+layout: default
+title: Renouvellement Certificat Synology
+permalink: /renewCertForNextcloud/
+---
+
+
 # Renouvellement Automatique Certificat Let's Encrypt Nextcloud
 
 Voici la procédure que j'utilise pour renouveler automatiquement un certificat
