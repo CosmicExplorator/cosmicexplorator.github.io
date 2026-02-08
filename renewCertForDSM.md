@@ -6,11 +6,13 @@ Let's Encrypt via acme.sh et OVH DNS.
 ## 1. Préparer les variables OVH
 
 Créer un fichier `ovh.ini` :
-
-OVH_AK="xxx"
-OVH_AS="xxx"
-OVH_CK="xxx"
-
+```bash
+cat ovh.ini
+# Informations pour l'accès à l'API OVH
+export OVH_AK="xxxxx"
+export OVH_AS="xxxxx"
+export OVH_CK="xxxxx"
+```
 ## 2. Générer le certificat
 
 
