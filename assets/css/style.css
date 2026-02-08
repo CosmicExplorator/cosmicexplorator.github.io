@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Layout global */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Barre latérale */
+.sidebar {
+  width: 230px;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+}
+
+.sidebar a {
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Titre du site */
+.site-title {
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Navigation */
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  margin-bottom: 0.5rem;
+}
+
+/* Contenu principal */
+.content {
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  max-width: 900px;
+}
