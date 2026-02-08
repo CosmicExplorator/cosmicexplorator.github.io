@@ -12,13 +12,20 @@
       <div class="site-title">
         <a href="{{ "/" | relative_url }}">Emmanuel B</a>
       </div>
+
       <nav class="nav">
         <ul>
-          <li><a href="{{ "/" | relative_url }}">Accueil</a></li>
-          <li><a href="{{ "/renewCertForDSM.html" | relative_url }}">Certificat Synology</a></li>
-          <!-- Ajoute ici d'autres liens -->
+          {% for category in site.data.navigation %}
+            <li class="nav-category">{{ category.title }}</li>
+            <ul class="nav-sub">
+              {% for item in category.items %}
+                <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
         </ul>
       </nav>
+
     </aside>
 
     <main class="content">
