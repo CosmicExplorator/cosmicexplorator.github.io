@@ -65,9 +65,8 @@ root@nextcloud:~/letsencrypt# crontab -l
 30 12 * * * /root/letsencrypt/renew.sh  && systemctl reload apache2
 ```
 
-
-```script
-cat renew.sh
+### le script renew.sh
+```bash
 #!/bin/bash
 certbot  renew --config-dir /root/letsencrypt/config --work-dir /root/letsencrypt/work --logs-dir /root/letsencrypt/logs --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini
 ```
