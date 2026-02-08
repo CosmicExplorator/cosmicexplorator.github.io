@@ -1,9 +1,20 @@
-main:
-  - title: "Accueil"
-    url: /
-  - title: "Certificat Synology"
-    url: /renewCertForDSM/
-  - title: "Domotique"
-    url: /homeassistant/
-  - title: "Astronomie"
-    url: /astronomie/
+- title: iTech
+  items:
+    - title: Certificat Synology
+      url: /renewCertForDSM/
+    - title: Certificat Nextcloud
+      url: /renewCertForNextcloud/
+
+- title: Domo
+  items:
+    - title: Home Assistant
+      url: /homeassistant/
+    - title: Zigbee
+      url: /zigbee/
+
+- title: Astronomie
+  items:
+    - title: Observation
+      url: /astro/observation/
+    - title: Matériel
+      url: /astro/materiel/
