@@ -1,4 +1,4 @@
-# Renouvellement d'un certificat Let's Encrypt sur Synology
+# Renouvellement Automatique d'un certificat Let's Encrypt sur Synology
 
 Voici la procédure que j'utilise pour renouveler automatiquement un certificat
 Let's Encrypt via acme.sh et OVH DNS.
