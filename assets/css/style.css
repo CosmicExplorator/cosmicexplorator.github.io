@@ -1,6 +1,8 @@
+/* Reset minimal */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f9fafb;
 }
 
 /* Layout global */
@@ -9,9 +11,9 @@ body {
   min-height: 100vh;
 }
 
-/* Barre latérale */
+/* Sidebar */
 .sidebar {
-  width: 230px;
+  width: 240px;
   background: #111827;
   color: #e5e7eb;
   padding: 1.5rem 1rem;
@@ -31,9 +33,15 @@ body {
 .site-title {
   font-weight: 600;
   margin-bottom: 1.5rem;
+  font-size: 1.2rem;
 }
 
 /* Navigation */
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
 .nav-category {
   margin-top: 1rem;
@@ -51,19 +59,6 @@ body {
 
 .nav-sub li {
   margin-bottom: 0.3rem;
-}
-
-
-
-
-.nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav li {
-  margin-bottom: 0.5rem;
 }
 
 /* Contenu principal */
