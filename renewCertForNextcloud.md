@@ -62,7 +62,7 @@ root@nextcloud:~/letsencrypt# crontab -l
 # Edit this file to introduce tasks to be run by cron.
 # ....
 # m h  dom mon dow   command
-30 12 * * * /root/letsencrypt/renew.sh  && systemctl reload apache2
+30 12 * * 0,3 /root/letsencrypt/renew.sh  && systemctl reload apache2
 ```
 
 ### le script renew.sh
