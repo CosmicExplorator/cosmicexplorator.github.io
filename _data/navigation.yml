@@ -8,16 +8,8 @@
       url: /renewCertForHaOs/
     - title: Kopia
       url: /svgWithKopia/
-- title: Domo
-  items:
-    - title: Home Assistant
-      url: /homeassistant/
-    - title: Zigbee
-      url: /zigbee/
+- title: Domoique
+
 
 - title: Astronomie
-  items:
-    - title: Observation
-      url: /astro/observation/
-    - title: Matériel
-      url: /astro/materiel/
+
