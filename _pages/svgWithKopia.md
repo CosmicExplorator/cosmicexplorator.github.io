@@ -87,3 +87,11 @@ root@nextcloud:~# kopia policy set /media/nextcloud-raid1/nextcloud
 --password= mdp du server
 
 
+output:
+
+``` bash
+Setting policy for root@nextcloud:/media/nextcloud-raid1/nextcloud
+ - setting snapshot times to [12:20]
+ - setting before-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_on_dump_bdd.sh" and timeout 5m0s
+ - setting after-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_off.sh" and timeout 5m0s
+```
