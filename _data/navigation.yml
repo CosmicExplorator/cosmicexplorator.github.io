@@ -6,6 +6,8 @@
       url: /renewCertForNextcloud/
     - title: Let's Encrypt - HaOS
       url: /renewCertForHaOs/
+    - title: Kopia
+      url: /svgWithKopia/
 - title: Domo
   items:
     - title: Home Assistant
