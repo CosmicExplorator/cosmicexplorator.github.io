@@ -55,7 +55,7 @@ root@nextcloud:~# kopia repository create server
    --path /media/nas2b_for_kopia
 ```
 
-![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-57.png)
+![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-54.png)
 
 
 
