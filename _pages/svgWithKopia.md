@@ -55,9 +55,7 @@ root@nextcloud:~# kopia repository create server
    --path /media/nas2b_for_kopia
 ```
 
-![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-54.png)
-
-
+  
 
 
 ### créer un dépot (repo)
@@ -100,3 +98,14 @@ Setting policy for root@nextcloud:/media/nextcloud-raid1/nextcloud
  - setting before-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_on_dump_bdd.sh" and timeout 5m0s
  - setting after-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_off.sh" and timeout 5m0s
 ```
+
+
+
+
+### quelques captures du servive : https://@IP:51515
+
+![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-54.png)
+
+![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-55.png)
+
+![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-56.png)
