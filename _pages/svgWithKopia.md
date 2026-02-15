@@ -48,12 +48,24 @@ root@nextcloud:~#
 
 ### créer une instance server pour Kopia
 ``` bash
-root@nextcloud:~# kopia repository create server   --url https://localhost:51515   --username xxxxx   --password xxxxxx   --path /media/nas2b_for_kopia
+root@nextcloud:~# kopia repository create server
+   --url https://localhost:51515
+   --username xxxxx
+   --password xxxxxx
+   --path /media/nas2b_for_kopia
 ```
 
 ### créer un dépot (repo)
 ``` bash
-root@nextcloud:~# /usr/bin/kopia server start      --address=0.0.0.0:51515    --ui    --tls-cert-file=/etc/ssl/cosmic/fullchain.pem    --tls-key-file=/etc/ssl/cosmic/privkey.pem    --server-username=xxxx    --server-password=xxxxx   --log-level=debug --config-file=/root/.config/kopia/repository.config
+root@nextcloud:~# /usr/bin/kopia server start
+    --address=0.0.0.0:51515
+    --ui
+    --tls-cert-file=/etc/ssl/cosmic/fullchain.pem
+    --tls-key-file=/etc/ssl/cosmic/privkey.pem
+    --server-username=xxxx
+    --server-password=xxxxx
+   --log-level=debug
+   --config-file=/root/.config/kopia/repository.config
 ```
 --server-username= user au login
 --server-password= mdp au login
