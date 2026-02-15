@@ -5,13 +5,31 @@ permalink: /svgWithKopia/
 ---
 
 
-# Renouvellement Automatique Certificat Let's Encrypt Nextcloud
+# Sauvegarder avec Kopia
 
 Voici la procédure que j'utilise pour renouveler automatiquement un certificat
 Let's Encrypt via acme.sh et OVH DNS.
 
 
-## 0. Ptit mémo: arboresence
+## 0. Ptit mémo: architecture
+
+
+                     +---------------------------+
+                     |     Serveur Nextcloud     |
+                     |---------------------------|
+                     |  - Service Nextcloud      |
+                     |  - Kopia (backup)         |
+                     +------------+--------------+
+                                  |
+                                  | Montage NFS
+                                  v
+                     +---------------------------+
+                     |       Synology NAS       |
+                     |---------------------------|
+                     |  Stockage des sauvegardes|
+                     +---------------------------+
+
+
 
 ```
 root@nextcloud:~/letsencrypt# tree -d -a
