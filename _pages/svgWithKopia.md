@@ -14,19 +14,19 @@ Let's Encrypt via acme.sh et OVH DNS.
 ## 0. Ptit mémo: architecture
 
 
-                     +---------------------------+
-                     |     Serveur Nextcloud     |
-                     |---------------------------|
-                     |  - Service Nextcloud      |
-                     |  - Kopia (backup)         |
-                     +------------+--------------+
+                     +-----------------------------------+
+                     |     Serveur Nextcloud             |
+                     |-----------------------------------|
+                     |  - Service Nextcloud              |
+                     |  - Kopia (backup)  :51515         |   <------- Snapshot : 12h20
+                     +------------+----------------------+
                                   |
                                   | Montage NFS
                                   v
                      +---------------------------+
-                     |       Synology NAS       |
-                     |---------------------------|
-                     |  Stockage des sauvegardes|
+                     |       Synology NAS        | <----------------   Demarrage quotidien: 11h50 - 13h00
+                     |---------------------------|                        - 12h00 : renew certficiat
+                     |  Stockage des sauvegardes | 
                      +---------------------------+
 
 
