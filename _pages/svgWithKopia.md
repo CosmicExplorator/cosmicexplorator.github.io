@@ -105,7 +105,7 @@ Setting policy for root@nextcloud:/media/nextcloud-raid1/nextcloud
 ### quelques captures du servive : https://@IP:51515
 
 ![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-54.png)
-
+****
 ![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-55.png)
-
+****
 ![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-56.png)
