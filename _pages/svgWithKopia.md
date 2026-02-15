@@ -28,15 +28,3 @@ Let's Encrypt via acme.sh et OVH DNS.
                      |---------------------------|
                      |  Stockage des sauvegardes|
                      +---------------------------+
-
-
-
-```
-root@nextcloud:~/letsencrypt# tree -d -a
-.
-├── config
-│   ├── accounts
-│   │   └── acme-v02.api.letsencrypt.org
-│   │       └── directory
-│   │           └── 99b2791cd2c5f9982788289fceb80b6c
-│   ├── archive
