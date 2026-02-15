@@ -55,6 +55,11 @@ root@nextcloud:~# kopia repository create server
    --path /media/nas2b_for_kopia
 ```
 
+![Serveur:51515](/assets/images/svgWithKopia/2006-02-15_19-57.png)
+
+
+
+
 ### créer un dépot (repo)
 ``` bash
 root@nextcloud:~# /usr/bin/kopia server start
