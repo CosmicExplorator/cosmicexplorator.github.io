@@ -1,13 +1,13 @@
 - title: iTech
   items:
     - title: Let's Encrypt - DSM
-      url: /renewCertForDSM/
+      url: /itech/crt_management/renewCertForDSM/
     - title: Let's Encrypt - Nextcloud
-      url: /renewCertForNextcloud/
+      url: /itech/crt_management/renewCertForNextcloud/
     - title: Let's Encrypt - HaOS
-      url: /renewCertForHaOs/
+      url: /itech/crt_management/renewCertForHaOs/
     - title: Kopia
-      url: /svgWithKopia/
+      url: /itech/backup/svgWithKopia/
 - title: Domoique
 
 
