@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Renouvellement Certificat pour nextcloud
-permalink: /renewCertForNextcloud/
+permalink: /itech/crt_management/renewCertForNextcloud/
 ---
 
 
