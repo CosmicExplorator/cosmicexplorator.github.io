@@ -105,17 +105,19 @@ root@station:~#systemctl status usbip.service
 
  
 
-Liaison du périphérique  (manuellement)
-
+## Liaison du périphérique  (manuellement)
+```bash
 sudo usbip bind -b 3-6
-Coupure du périphérique (manuellement)
-
+```
+## Coupure du périphérique (manuellement)
+```bash
 sudo usbip unbind -b 3-6
+```
 
 
-Configuration du serveur qui héberge  indiserver
- Installation du service usbip
-
+# Configuration du serveur qui héberge  indiserver
+## Installation du service usbip
+```bash
 root@indiserver:~#sudo apt install -y linux-tools-generic
 root@indiserver:~#  sudo modprobe vhci-hcd
 Creation d'un service dédié
@@ -143,32 +145,36 @@ root@indiserver:/etc/systemd/system# sudo systemctl start usbip
 root@indiserver:/etc/systemd/system# sudo systemctl status usbip
 root@indiserver:/etc/systemd/system# sudo systemctl stop usbip
 root@indiserver:/etc/systemd/system# sudo systemctl enable usbipd
+```
 
-
-Détruire les process (usbip) existant sur le port 3240
-
+## Détruire les process (usbip) existant sur le port 3240
+```bash
 root@indiserver:/etc/systemd/system# sudo kill -9 $(sudo lsof -t -i :3240)
-Démarrage du service (manuellement)
+```
 
- root@indiserver:~# sudo usbipd -D 
-Connexion au périphérique (relevé l'@IP de la station)
-
+## Démarrage du service (manuellement)
+```bash
+root@indiserver:~# sudo usbipd -D 
+```
+## Connexion au périphérique (relevé l'@IP de la station)
+```bash
 root@indiserver:~# sudo usbipd -D
 root@indiserver:~# sudo usbip attach -r @ip_station -b X-Y
-
+```
 vérification que le joystick est vu comme équipement USB sur le server
-
+```bash
 root@indiserver:~# lsusb
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ........
 Bus 003 Device 002: ID 06a3:0c28 Saitek PLC Aviator for Playstation 3/PC  <==== :)
-
+```
 
 
 Il ne reste plus qu'à relancer le server indi avec ce nouvel équipement
+```bash
 root@indiserver:~# indiserver /usr/bin/indi_celestron_gps /usr/bin/indi_\
 celestron_sct_focus /usr/bin/indi_canon_ccd  /usr/bin/indi_joystick 
-
+```
 Ensuite, kstars (sur la station) après s'être connecté au serveur, proposera un nouvel onglet Joystick dans Ekos.
 
  
