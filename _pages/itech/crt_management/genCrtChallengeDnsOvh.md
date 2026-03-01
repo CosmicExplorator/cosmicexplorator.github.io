@@ -6,30 +6,33 @@ permalink: /genCrtChallengeDnsOvh/
 
 
 Prérequis: disposer d’un nom de domaine chez OVH
-Configurer et récupérer les éléments de l’API (ovh)
-ovh::api::token
 
 
+# Configurer et récupérer les éléments de l’API (ovh)
 
- 
+
+[Lien Api OVH] (https://www.ovh.com/auth/api/createToken)
+
+
 Sur ce lien: créer l'api si non existante et entrez les routes suivantes (elles correspondent aux actions nécessaires pour Certbot et la validation :
 
-GET /domain/zone/* : Lecture des zones DNS.
-PUT /domain/zone/* : Modification des enregistrements DNS.
-POST /domain/zone/* : Ajouter des enregistrements DNS.
-DELETE /domain/zone/* : Supprimer des enregistrements DNS.
-POST /domain/zone/*/refresh : Rafraîchir la zone DNS après des modifications.
- En retour copier les éléments renvoyés dans un fichier $USER_HOME/ovh.ini
+- GET /domain/zone/* : Lecture des zones DNS.
+- PUT /domain/zone/* : Modification des enregistrements DNS.
+- POST /domain/zone/* : Ajouter des enregistrements DNS.
+- DELETE /domain/zone/* : Supprimer des enregistrements DNS.
+- POST /domain/zone/*/refresh : Rafraîchir la zone DNS après des modifications.
+
+En retour copier les éléments renvoyés dans un fichier $USER_HOME/ovh.ini
 
 
-<code>
+```bash
 
 dns_ovh_endpoint = ovh-eu
 dns_ovh_application_key = ebf.....f
 dns_ovh_application_secret = 448......e
 dns_ovh_consumer_key = 5bd.....7 
 
-</code>
+```
 
 
 Installer cerbot et ses dépendances 
