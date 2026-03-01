@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Renouvellement Certificat Synology
+title: Renouvellement Certificat pour Home Assistant
 permalink: /renewCertForHaOs/
 ---
 
