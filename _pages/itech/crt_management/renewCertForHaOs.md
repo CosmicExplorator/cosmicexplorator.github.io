@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Renouvellement Certificat pour Home Assistant
-permalink: /renewCertForHaOs/
+permalink: /itech/crt_management/renewCertForHaOs/
 ---
 
 # Utiliser un certificat Let's Encrypt sous Home Assistant
