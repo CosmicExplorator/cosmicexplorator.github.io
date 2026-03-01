@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Sauvegarde Kopia
+title: Configurer et Utiliser un Joystick en Astronomie
 permalink: /configUseJoystick/
 ---
 
