@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Renouvellement Certificat Synology
-permalink: /renewCertForDSM/
+permalink: /itech/crt_management/renewCertForDSM/
 ---
 
 
