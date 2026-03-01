@@ -5,6 +5,9 @@ permalink: /installIndilib/
 ---
 
 
+
+
+
 # Compiler indlib (sous ubuntu 24.04)
  Vérification de la distribution installée
 ```bash
