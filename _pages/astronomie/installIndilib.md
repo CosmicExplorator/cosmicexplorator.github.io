@@ -5,7 +5,7 @@ permalink: /installIndilib/
 ---
 
 
-![Projet Indilib](/assets/images/installIndilib/2026_03_01-logo.png)
+[![Projet Indilib](/assets/images/installIndilib/2026_03_01-logo.png)](https://indilib.org)
 
 
 # Compiler indlib (sous ubuntu 24.04)
