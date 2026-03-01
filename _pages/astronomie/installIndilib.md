@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Sauvegarde Kopia
+title: Créer un serveur IndiLib (déporté)
 permalink: /installIndilib/
 ---
 
