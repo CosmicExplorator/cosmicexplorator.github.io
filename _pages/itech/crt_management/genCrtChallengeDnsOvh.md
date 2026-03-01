@@ -1,3 +1,10 @@
+---
+layout: default
+title: Generer un certificat let's encrypt avec challenge DNS
+permalink: /genCrtChallengeDnsOvh/
+---
+
+
 Prérequis: disposer d’un nom de domaine chez OVH
 Configurer et récupérer les éléments de l’API (ovh)
 ovh::api::token
