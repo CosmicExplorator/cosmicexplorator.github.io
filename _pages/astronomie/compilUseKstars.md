@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Sauvegarde Kopia
-permalink: /compilKstarts/
+title: Compiler Kstars
+permalink: /compilKstars/
 ---
 
 
