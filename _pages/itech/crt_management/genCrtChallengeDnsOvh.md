@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Generer un certificat let's encrypt avec challenge DNS
-permalink: /genCrtChallengeDnsOvh/
+permalink: /itech/crt_management/genCrtChallengeDnsOvh/
 ---
 
 
