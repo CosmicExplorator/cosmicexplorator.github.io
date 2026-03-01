@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Renouvellement Certificat Synology
+title: Renouvellement Certificat pour nextcloud
 permalink: /renewCertForNextcloud/
 ---
 
