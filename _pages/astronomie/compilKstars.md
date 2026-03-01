@@ -1,3 +1,14 @@
+---
+layout: default
+title: Sauvegarde Kopia
+permalink: /compilKstarts/
+---
+
+
+ 
+ 
+ 
+ 
  Compilation des sources:
 root@station:~# mkdir git; cd git;
 
