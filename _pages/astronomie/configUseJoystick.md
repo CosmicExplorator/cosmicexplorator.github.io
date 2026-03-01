@@ -1,3 +1,11 @@
+---
+layout: default
+title: Sauvegarde Kopia
+permalink: /configUseJoystick/
+---
+
+
+
 Un joystick non utilisé en guise de contrôleur de télescope 
  
 Architecture de l'observatoire
