@@ -35,12 +35,16 @@ dns_ovh_consumer_key = 5bd.....7
 ```
 
 
-Installer cerbot et ses dépendances 
+# Installer cerbot et ses dépendances 
+
+```
 root@cloud:~#python3 -m venv .venv/py3.12-certbot
 root@cloud:~#source  .venv/py3.12-certbot/bin/activate
 (py3.12-certbot) root@cloud:~#pip install pip install --upgrade certbot certbot-dns-ovh
- 
+ ```
+
 Les secrets de l'api
+```
 (py3.12-certbot) root@cloud:~/letsencrypt# ls -alh ./.secrets/
 total 12K
 drwxr-xr-x 2 root     root     4,0K août   5 13:17 .
@@ -48,6 +52,8 @@ drwxr-xr-x 6 www-data www-data 4,0K août   5 13:17 ..
 -rw------- 1 www-data www-data  229 août   5 13:45 ovh.ini
 (py3.12-certbot) root@cloud:~/letsencrypt# 
 (py3.12-certbot) root@cloud:~/letsencrypt# cat ./.secrets/ovh.ini 
+```
+
 # Informations pour l'accès à l'API OVH
 dns_ovh_endpoint = ovh-eu
 dns_ovh_application_key = ....
@@ -69,25 +75,30 @@ email = xxxxx@gmail.com
 agree-tos = true
 no-eff-email = true
  
-Générer les certificats 
+# Générer les certificats 
+```bash
 (py3.12-certbot) root@cloud:~# certbot certonly --config /root/letsencrypt/config/cli.ini --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini -d "*.cosmic.ovh" -d "cosmic.ovh"    -d "*.grey.cosmic.ovh"   -d "*.green.cosmic.ovh"
- Lister les certificats
- (py3.12-certbot) root@cloud:~/letsencrypt# certbot certificates   --concertbot certificates --config /root/letsencrypt/config/cli.ini --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini
+```
+#Lister les certificats
+```bash
+(py3.12-certbot) root@cloud:~/letsencrypt# certbot certificates   --concertbot certificates --config /root/letsencrypt/config/cli.ini --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini
+```
 
-
-Copie des *pem vers les equipements cibles
-
+# Copie des *pem vers les equipements cibles
+```bash
 (py3.12-certbot) root@cloud:~/letsencrypt/config/live/xxxx.ovh# scp -P 2222 -O ./*pem root@10.0.1.1:/etc/ssl/xxxx.ovh/
+```
 
 
-
-Révocation et suppression des certificats
-
+# Révocation et suppression des certificats
+```bash
 (py3.12-certbot) root@cloud:~#certbot revoke   --cert-path /root/letsencrypt/config/live/xxxx.ovh/cert.pem   --key-path /root/letsencrypt/config/live/xxxx.ovh/privkey.pem --config /root/letsencrypt/config/cli.ini
-
-Cas d'une instance openwrt : https
+```
+# Cas d'une instance openwrt : https
+```bash
 root@router:/etc/ssl#chmod 600 /etc/ssl/cosmic.ovh/privkey.pem
 root@router:/etc/ssl#chmod 644 /etc/ssl/cosmic.ovh/fullchain.pem
 root@router:/etc/ssl#uci set uhttpd.main.cert='/etc/ssl/cosmic.ovh/fullchain.pem' root@router:/etc/ssl#uci set uhttpd.main.key='/etc/ssl/cosmic.ovh/privkey.pem'
 root@router:/etc/ssl#uci commit uhttpd
 root@router:/etc/ssl#/etc/init.d/uhttpd restart
+```
