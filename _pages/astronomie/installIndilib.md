@@ -111,9 +111,9 @@ root@indiserver:~# udevadm control --reload
 root@indiserver:~# udevadm trigger
 ```
 
-IndiServer : creation d'un service
+# IndiServer : creation d'un service
 🟥 Recommandé uniquement si la configuration est figée.
-
+```bash
 root@indiserver:~# cat /etc/systemd/system/indi.service 
 [Unit]
 Description=INDI Server for astronomical devices
@@ -133,10 +133,13 @@ WantedBy=multi-user.target
 root@indiserver:~# systemctl start indi.service
 root@indiserver:~# systemctl status indi.service
 root@indiserver:~# systemctl enable|disable indi.service (activer ou non au boot)
-IndiServer: démarrage manuel
+```
+
+# IndiServer: démarrage manuel
+```bash
 root@indiserver:~#  /usr/bin/indiserver -v /usr/bin/indi_celestron_gps \
 /usr/bin/indi_celestron_sct_focus /usr/bin/indi_canon_ccd \
 /usr/bin/indi_asi_ccd /usr/bin/indi_joystick /usr/bin/indi_gpsd
-
+```
 
 
