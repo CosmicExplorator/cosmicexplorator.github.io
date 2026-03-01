@@ -64,11 +64,13 @@ sed -E 's/.*busid ([0-9-]+).*/\1/');
 root@station:~# echo "$BUSID"
 ```
 
-Démarrage du service (manuellement)
-
+## Démarrage du service (manuellement)
+```bash
 root@station:~# sudo usbipd -D 
-Creation d'un service (automatique)
+```
 
+## Creation d'un service (automatique)
+```bash
 root@station:~# bash -c 'cat > /etc/systemd/system/usbip.service <<EOF
 [Unit]
 Description=Exports USB device over IP
@@ -99,7 +101,7 @@ root@station:~#systemctl start usbip.service
 
 # Vérifier son état
 root@station:~#systemctl status usbip.service
-
+```
 
  
 
