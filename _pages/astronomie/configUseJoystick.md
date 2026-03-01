@@ -6,7 +6,7 @@ permalink: /configUseJoystick/
 
 
 
-Un joystick non utilisé en guise de contrôleur de télescope 
+# Piloter une monture equatoriale avec un joystick
  
 Architecture de l'observatoire
  
@@ -16,6 +16,8 @@ Pour cela nous utilisons le service usbipd.
  
 Pré-requis:
 Serveur indi et station cliente sont sur des distributions linux Ubuntu
+
+```bash
 root@station:~# cat /etc/os-release
 PRETTY_NAME="Ubuntu 24.04.1 LTS"
 NAME="Ubuntu"
@@ -30,23 +32,24 @@ BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
 PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
 UBUNTU_CODENAME=noble
 LOGO=ubuntu-logo
+```
   
-
-Configuration station (reliée au joystick)
- Installation du service usbip
-
+# Configuration station (reliée au joystick)
+## Installation du service usbip
+```bash
 root@station:~#sudo apt install -y linux-tools-generic
 root@station:~# sudo modprobe usbip-core
 root@station:~# sudo modprobe usbip-host
+```
 
-
-Activation des modules
-
+## Activation des modules
+```bash
 root@station:~# echo -e "usbip-core\nusbip_common_mod\nusbip-host" | \
 sudo tee /etc/modules-load.d/usbip.conf > /dev/null
+```
 
-Recherche du joystick
-
+## Recherche du joystick
+```bash
 root@station:~# sudo usbip list -l
  - busid 3-12 (8087:07dc)
    Intel Corp. : Bluetooth wireless interface (8087:07dc)
@@ -59,6 +62,7 @@ root@station:~# sudo usbip list -l
 root@station:~# BUSID=$(usbip list -l | grep -B1 "06a3:0c28" | grep "busid" |\
 sed -E 's/.*busid ([0-9-]+).*/\1/');
 root@station:~# echo "$BUSID"
+```
 
 Démarrage du service (manuellement)
 
