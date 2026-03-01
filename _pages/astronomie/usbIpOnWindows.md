@@ -10,7 +10,7 @@ permalink: /usbIpOnWindows/
 
 
 
-# Console WSL
+# Console WSL (acte 1)
 
 emmanuel@pc-salon:~$ lsusb
 emmanuel@pc-salon:~$
@@ -18,7 +18,7 @@ emmanuel@pc-salon:~$
 
 Aucun équipement n'est vu. 😕
 
-#Console Powershell
+# Console Powershell
 
 ```bash
 PS C:\Users\emman> usbipd list
@@ -39,7 +39,7 @@ Repérer l'équipement cible et son BusID puis lancer:
 PS C:\Users\emman> usbipd attach --wsl --busid 2-2
 ```
 
-# Console WSL  (acte2)
+# Console WSL (acte 2)
 ```
 emmanuel@pc-salon:~$ lsusb
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
