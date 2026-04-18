@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sauvegarde Kopia
-permalink: /svgWithKopia/
+permalink: /itech/backup/svgWithKopia/
 ---
 
 
