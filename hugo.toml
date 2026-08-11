@@ -21,11 +21,11 @@ ignoreFiles = ['themes/aafu/content/.*']
 [params]
   author = 'Emmanuel B'
   description = 'Notes techniques autour de l’astronomie, de la domotique et de l’informatique.'
-  copyright = '© Emmanuel B · Propulsé par [Hugo](https://gohugo.io/)'
+  copyright = '© Emmanuel B'
 
   [params.theme]
     mainTheme = 'dark'
-    showAttribute = true
+    showAttribute = false
     singlePage = false
 
   [[params.accordion]]
