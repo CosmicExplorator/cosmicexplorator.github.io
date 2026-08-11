@@ -31,6 +31,15 @@ description: "Compte rendu de la session d’observation."
 
 - [ ] …
 
+## Démarrage de la session
+
+- [ ] Montage, équilibrage et câbles vérifiés
+- [ ] USB/IP et profil INDI démarrés
+- [ ] Équipements connectés dans Ekos et INDI
+- [ ] Monture `Parked` avant le premier mouvement
+
+[Consulter la procédure complète](/astronomie/howto/demarrer-session/).
+
 ## Déroulement
 
 …
@@ -43,11 +52,17 @@ description: "Compte rendu de la session d’observation."
 | Guidage RMS | … |
 | Acquisition | … |
 
-## Incidents et solutions
+## Captures et analyse
 
-| Incident | Cause ou hypothèse | Action |
-|---|---|---|
-| … | … | … |
+![Description de la capture](/assets/images/sessions/AAAA-MM-JJ/nom-image.png)
+
+*Ce que montre la capture et la conclusion à conserver pour la prochaine session.*
+
+## RETEX
+
+- **Problème :** …
+  - **Solution :** …
+  - **HOWTO :** [Consulter la procédure](/astronomie/howto/)
 
 ## Bilan
 
@@ -62,3 +77,15 @@ description: "Compte rendu de la session d’observation."
 ### Prochaine session
 
 - …
+
+## Fin de session
+
+- [ ] Acquisition et guidage arrêtés
+- [ ] Images enregistrées
+- [ ] Monture parquée et position vérifiée
+- [ ] Équipements déconnectés dans Ekos
+- [ ] Profil INDI arrêté
+- [ ] Alimentations coupées et optiques protégées
+- [ ] RETEX sauvegardé
+
+[Consulter la procédure complète](/astronomie/howto/terminer-session/).
