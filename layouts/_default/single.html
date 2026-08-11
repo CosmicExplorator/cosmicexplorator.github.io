@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <article>
+    <header class="page-header">
+      {{ with .CurrentSection }}<a class="breadcrumb" href="{{ .RelPermalink }}">← {{ .LinkTitle }}</a>{{ end }}
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+    </header>
+    <div class="prose">{{ .Content }}</div>
+  </article>
+{{ end }}

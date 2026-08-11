@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Utiliser le service UsbIp sous Microsoft
-permalink: /usbIpOnWindows/
+url: /usbIpOnWindows/
+description: Rendre un périphérique USB Windows accessible dans WSL avec USB/IP.
+weight: 40
 ---
 
 # Utiliser le service UsbIp sur un OS Microsot 
@@ -50,4 +51,3 @@ emmanuel@pc-salon:~$ ls /dev/ttyUSB0
 /dev/ttyUSB0
 emmanuel@pc-salon:~$
 ```
-

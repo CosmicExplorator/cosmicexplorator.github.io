@@ -1,0 +1,25 @@
+baseURL = 'https://cosmicexplorator.github.io/'
+defaultContentLanguage = 'fr'
+title = 'Cosmic Explorator'
+enableRobotsTXT = true
+
+[params]
+  author = 'Emmanuel B'
+  description = 'Notes techniques autour de l’astronomie, de la domotique et de l’informatique.'
+
+[languages]
+  [languages.fr]
+    locale = 'fr-FR'
+    label = 'Français'
+    weight = 1
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

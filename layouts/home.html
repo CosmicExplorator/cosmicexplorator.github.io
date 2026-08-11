@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <header class="hero">
+    <p class="eyebrow">Carnet d’exploration technique</p>
+    <h1>{{ .Title }}</h1>
+    <p class="lead">{{ .Description }}</p>
+  </header>
+  <article class="prose home-copy">{{ .Content }}</article>
+  <section class="cards" aria-label="Rubriques">
+    {{ range site.Sections.ByWeight }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <span class="card-kicker">Rubrique</span>
+        <strong>{{ .LinkTitle }}</strong>
+        <span>{{ .Description | default "Découvrir les articles" }}</span>
+        <span class="card-link">Explorer →</span>
+      </a>
+    {{ end }}
+  </section>
+{{ end }}

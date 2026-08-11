@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Compiler Kstars
-permalink: /compilKstars/
+url: /compilKstars/
+description: Compiler KStars depuis les sources et le connecter à un serveur INDI distant.
+weight: 20
 ---
 
 
@@ -35,4 +36,3 @@ emmanuel@station:~# kstars
 ![Projet Indilib](/assets/images/compilUseKstars/2025-01-12_20-48.png)
 
 Les équipements chargés par IndiServer sur le server, sont bien vu depuis la station cliente qui exécute kstars.  Ils sont bien tous connectés et pilotables via Ekos.
-

@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Configurer et Utiliser un Joystick en Astronomie
-permalink: /configUseJoystick/
+url: /configUseJoystick/
+description: Partager un joystick avec USB/IP pour piloter une monture équatoriale.
+weight: 30
 ---
 
 

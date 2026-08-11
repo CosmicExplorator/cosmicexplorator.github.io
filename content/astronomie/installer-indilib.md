@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Créer un serveur IndiLib (déporté)
-permalink: /installIndilib/
+url: /installIndilib/
+description: Compiler INDI et créer un serveur distant pour le matériel astronomique.
+weight: 10
 ---
 
 
@@ -144,5 +145,4 @@ root@indiserver:~#  /usr/bin/indiserver -v /usr/bin/indi_celestron_gps \
 /usr/bin/indi_celestron_sct_focus /usr/bin/indi_canon_ccd \
 /usr/bin/indi_asi_ccd /usr/bin/indi_joystick /usr/bin/indi_gpsd
 ```
-
 
