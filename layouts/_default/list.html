@@ -3,15 +3,29 @@
   <h1>{{ .Title }}</h1>
   {{ with .Description }}<p class="text-lg text-stone-600 dark:text-stone-300 mb-8">{{ . }}</p>{{ end }}
   <div class="prose dark:prose-invert mb-8">{{ .Content }}</div>
+
+  {{ with .Sections.ByWeight }}
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+    {{ range . }}
+    <a class="block rounded-lg border border-gray-300 dark:border-gray-700 p-5 hover:no-underline hover:bg-gray-100 dark:hover:bg-stone-800" href="{{ .RelPermalink }}">
+      <h2 class="text-xl mb-2">{{ .LinkTitle }}</h2>
+      <p class="text-stone-600 dark:text-stone-300 mb-0">{{ .Description | default "Découvrir les articles" }}</p>
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ if .RegularPages }}
   <div class="grid gap-3">
     {{ range .RegularPages.ByWeight }}
     <a class="block rounded-lg border border-gray-300 dark:border-gray-700 p-4 hover:no-underline hover:bg-gray-100 dark:hover:bg-stone-800" href="{{ .RelPermalink }}">
       <h2 class="text-xl mb-1">{{ .LinkTitle }}</h2>
       {{ with .Description }}<p class="text-stone-600 dark:text-stone-300 mb-0">{{ . }}</p>{{ end }}
     </a>
-    {{ else }}
-    <p>Aucun article dans cette rubrique pour le moment.</p>
     {{ end }}
   </div>
+  {{ else if not .Sections }}
+  <p>Aucun article dans cette rubrique pour le moment.</p>
+  {{ end }}
 </div>
 {{ end }}
