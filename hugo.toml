@@ -22,6 +22,7 @@ ignoreFiles = ['themes/aafu/content/.*']
   author = 'Emmanuel B'
   description = 'Notes techniques autour de l’astronomie, de la domotique et de l’informatique.'
   copyright = '© Emmanuel B'
+  signature = 'Entre étoiles et lignes de commande.'
 
   [params.theme]
     mainTheme = 'dark'
