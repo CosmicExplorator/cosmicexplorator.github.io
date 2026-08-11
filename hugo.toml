@@ -2,6 +2,18 @@ baseURL = 'https://cosmicexplorator.github.io/'
 defaultContentLanguage = 'fr'
 title = 'Cosmic Explorator'
 enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
+
+[build]
+  noJSConfigInAssets = true
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML']
+
+[sitemap]
+  changefreq = 'monthly'
+  priority = 0.5
 
 [params]
   author = 'Emmanuel B'

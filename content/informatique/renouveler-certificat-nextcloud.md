@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Renouvellement Certificat pour nextcloud
-permalink: /itech/crt_management/renewCertForNextcloud/
+url: /itech/crt_management/renewCertForNextcloud/
+description: Automatiser le renouvellement d’un certificat Let's Encrypt pour Nextcloud.
+weight: 40
 ---
 
 

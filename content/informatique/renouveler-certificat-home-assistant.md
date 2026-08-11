@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Renouvellement Certificat pour Home Assistant
-permalink: /itech/crt_management/renewCertForHaOs/
+url: /itech/crt_management/renewCertForHaOs/
+description: Configurer un certificat Let's Encrypt dans Home Assistant avec Nginx Proxy Manager.
+weight: 30
 ---
 
 # Utiliser un certificat Let's Encrypt sous Home Assistant

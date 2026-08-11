@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Renouvellement Certificat Synology
-permalink: /itech/crt_management/renewCertForDSM/
+url: /itech/crt_management/renewCertForDSM/
+description: Automatiser le renouvellement et le déploiement d’un certificat sur Synology DSM.
+weight: 20
 ---
 
 

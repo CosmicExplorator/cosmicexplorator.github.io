@@ -1,7 +1,8 @@
 ---
-layout: default
-title: Generer un certificat let's encrypt avec challenge DNS
-permalink: /itech/crt_management/genCrtChallengeDnsOvh/
+title: Générer un certificat Let's Encrypt avec un challenge DNS OVH
+url: /itech/crt_management/genCrtChallengeDnsOvh/
+description: Créer un certificat Let's Encrypt avec Certbot et l’API DNS d’OVH.
+weight: 10
 ---
 
 

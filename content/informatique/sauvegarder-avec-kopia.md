@@ -1,7 +1,8 @@
 ---
-layout: default
 title: Sauvegarde Kopia
-permalink: /itech/backup/svgWithKopia/
+url: /itech/backup/svgWithKopia/
+description: Sauvegarder un serveur Nextcloud sur un NAS Synology avec Kopia.
+weight: 50
 ---
 
 
