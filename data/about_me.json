@@ -1,0 +1,8 @@
+{
+  "title": "À propos",
+  "icon": "bi bi-person",
+  "description": [
+    "Bienvenue sur **Cosmic Explorator**, mon carnet de notes et de réalisations techniques.",
+    "J’y partage des guides issus de mes expérimentations autour de l’astronomie, de la domotique et de l’informatique auto-hébergée."
+  ]
+}

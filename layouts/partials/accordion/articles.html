@@ -1,0 +1,4 @@
+{{ range first 6 (where site.RegularPages "Section" "ne" "") }}
+<h4><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h4>
+{{ with .Description }}<p class="markdownify indent-8 mb-2">{{ . }}</p>{{ end }}
+{{ end }}

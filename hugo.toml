@@ -28,6 +28,21 @@ ignoreFiles = ['themes/aafu/content/.*']
     showAttribute = true
     singlePage = false
 
+  [[params.accordion]]
+    item = 'about_me'
+    expand = true
+
+  [[params.accordion]]
+    item = 'projects'
+
+  [[params.accordion]]
+    item = 'articles'
+
+  [[params.social]]
+    icon = 'bi bi-github'
+    url = 'https://github.com/CosmicExplorator'
+    title = 'GitHub'
+
 [languages]
   [languages.fr]
     locale = 'fr-FR'

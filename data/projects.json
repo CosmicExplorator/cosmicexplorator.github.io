@@ -1,0 +1,21 @@
+{
+  "title": "Rubriques",
+  "icon": "bi bi-kanban",
+  "list": [
+    {
+      "title": "Astronomie",
+      "url": "/astronomie/",
+      "description": "INDI, KStars/Ekos et pilotage des équipements de l’observatoire."
+    },
+    {
+      "title": "Informatique",
+      "url": "/informatique/",
+      "description": "Services auto-hébergés, certificats TLS et sauvegardes."
+    },
+    {
+      "title": "Domotique",
+      "url": "/domotique/",
+      "description": "Projets et automatisations pour la maison connectée."
+    }
+  ]
+}
