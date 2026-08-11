@@ -1,10 +1,8 @@
 {{ define "main" }}
-  <article>
-    <header class="page-header">
-      {{ with .CurrentSection }}<a class="breadcrumb" href="{{ .RelPermalink }}">← {{ .LinkTitle }}</a>{{ end }}
-      <h1>{{ .Title }}</h1>
-      {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-    </header>
-    <div class="prose">{{ .Content }}</div>
-  </article>
+<article class="prose dark:prose-invert m-auto">
+  {{ with .CurrentSection }}<a href="{{ .RelPermalink }}">← {{ .LinkTitle }}</a>{{ end }}
+  <h1 class="top-h1 mt-4">{{ .Title }}</h1>
+  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+  <div class="content">{{ .Content }}</div>
+</article>
 {{ end }}

@@ -1,11 +1,14 @@
 baseURL = 'https://blog.cosmic.ovh/'
 defaultContentLanguage = 'fr'
 title = 'Cosmic Explorator'
+theme = 'aafu'
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
+ignoreFiles = ['themes/aafu/content/.*']
 
 [build]
   noJSConfigInAssets = true
+  writeStats = true
 
 [outputs]
   home = ['HTML', 'RSS']
@@ -18,6 +21,12 @@ disableKinds = ['taxonomy', 'term']
 [params]
   author = 'Emmanuel B'
   description = 'Notes techniques autour de l’astronomie, de la domotique et de l’informatique.'
+  copyright = '© Emmanuel B · Propulsé par [Hugo](https://gohugo.io/)'
+
+  [params.theme]
+    mainTheme = 'dark'
+    showAttribute = true
+    singlePage = false
 
 [languages]
   [languages.fr]
