@@ -62,7 +62,7 @@ description: "Compte rendu de la session d’observation."
 
 - **Problème :** …
   - **Solution :** …
-  - **HOWTO :** [Consulter la procédure](/astronomie/howto/)
+  - **HowTo :** [Consulter la procédure](/astronomie/howto/)
 
 ## Bilan
 

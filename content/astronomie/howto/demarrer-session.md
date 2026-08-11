@@ -62,14 +62,14 @@ ansible-playbook playbooks/check_hardware_complete.yml
 - `INDI → GPSD → Connexion` : coordonnées reçues ;
 - `INDI → Joystick → Connexion` : joystick détecté.
 
-Si un équipement manque, ne pas déparquer la monture. Consulter le [HOWTO de résolution des problèmes](../depannage/).
+Si un équipement manque, ne pas déparquer la monture. Consulter le [HowTo de résolution des problèmes](../depannage/).
 
 ## 6. Sélectionner les trains optiques
 
 - **Acquisition et mise au point :** `C8 EdgeHD + Canon 1200D` ;
 - **Guidage et alignement polaire :** `EvoGuide 50ED + ASI120MM-S`.
 
-Les valeurs détaillées des trains restent dans le [HOWTO de configuration](../configurer-kstars-ekos/#4-créer-le-train-principal).
+Les valeurs détaillées des trains restent dans le [HowTo de configuration](../configurer-kstars-ekos/#4-créer-le-train-principal).
 
 ## 7. Contrôles avant déparcage
 

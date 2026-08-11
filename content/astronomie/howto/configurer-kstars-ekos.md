@@ -4,7 +4,7 @@ description: "Créer un profil Ekos distant et les trains optiques de l’observ
 weight: 10
 ---
 
-Ce HOWTO configure KStars/Ekos pour utiliser le serveur INDI géré par `indi-ansible` sur `telescope.lan`.
+Ce HowTo configure KStars/Ekos pour utiliser le serveur INDI géré par `indi-ansible` sur `telescope.lan`.
 
 ## Prérequis
 
@@ -135,4 +135,4 @@ Puis contrôler directement :
 
 `Panneau de contrôle INDI → EQMod Mount → État : Parked`
 
-Pour les autres incidents validés pendant les sessions, consulter le [HOWTO de résolution des problèmes](../depannage/).
+Pour les autres incidents validés pendant les sessions, consulter le [HowTo de résolution des problèmes](../depannage/).

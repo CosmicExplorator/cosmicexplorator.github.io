@@ -1,5 +1,5 @@
 ---
-title: "HOWTO — Nom du problème"
+title: "HowTo — Nom du problème"
 date: {{ .Date }}
 description: "Diagnostic et résolution vérifiée."
 ---

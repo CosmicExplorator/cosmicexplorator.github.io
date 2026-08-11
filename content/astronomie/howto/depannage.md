@@ -1,5 +1,5 @@
 ---
-title: "HOWTO — Résolution des problèmes"
+title: "HowTo — Résolution des problèmes"
 description: "Transformer les incidents rencontrés pendant les sessions en solutions vérifiées et réutilisables."
 weight: 40
 ---
