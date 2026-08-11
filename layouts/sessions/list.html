@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="py-4">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="text-lg text-stone-600 dark:text-stone-300 mb-6">{{ . }}</p>{{ end }}
+  <div class="prose dark:prose-invert mb-8">{{ .Content }}</div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Session</th>
+          <th>Cible</th>
+          <th>Résultat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ range .RegularPages.ByDate.Reverse }}
+        <tr>
+          <td><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time></td>
+          <td><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></td>
+          <td>{{ .Params.target | default "—" }}</td>
+          <td>{{ .Params.result | default "—" }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{ end }}
