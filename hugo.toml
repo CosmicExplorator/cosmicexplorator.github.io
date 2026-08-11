@@ -1,4 +1,4 @@
-baseURL = 'https://cosmicexplorator.github.io/'
+baseURL = 'https://blog.cosmic.ovh/'
 defaultContentLanguage = 'fr'
 title = 'Cosmic Explorator'
 enableRobotsTXT = true
