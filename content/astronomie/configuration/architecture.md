@@ -22,8 +22,10 @@ flowchart LR
         F["Focuser Celestron SCT"]
     end
 
-    subgraph DEW["Gestion autonome de la rosée"]
+    subgraph DEW["Gestion de la rosée"]
+        H["Ordinateur de commande<br/>Firmata"]
         A["Arduino Uno<br/>AntiDewino"]
+        D["Module D4184"]
         R["Anneau chauffant 12 V<br/>lame correctrice"]
     end
 
@@ -35,7 +37,9 @@ flowchart LR
     I --- Z
     I --- C
     I --- F
-    A --> R
+    H -->|"USB / série"| A
+    A -->|"PWM D9"| D
+    D --> R
 {{< /mermaid >}}
 
 ## Station cliente
@@ -48,9 +52,9 @@ Le serveur Ubuntu centralise les pilotes et les profils matériels. La monture, 
 
 ## Gestion de la rosée
 
-**AntiDewino** est un contrôleur autonome basé sur un Arduino Uno. Il mesure les conditions autour du télescope et ajuste, par l’intermédiaire d’un étage de puissance, la puissance de l’anneau chauffant installé sur la lame correctrice du C8 EdgeHD.
+**AntiDewino** reçoit de l’ordinateur une consigne de chauffe via USB et le protocole Firmata. L’Arduino Uno convertit cette consigne en un signal PWM sur D9, puis le module MOSFET D4184 module la puissance 12 V envoyée à l’anneau chauffant installé sur la lame correctrice du C8 EdgeHD.
 
-L’anneau est alimenté en 12 V et n’est jamais raccordé directement à une sortie de l’Arduino. AntiDewino fonctionne indépendamment du serveur INDI et de KStars/Ekos. Consulter la [documentation d’AntiDewino]({{< ref "/astronomie/materiel/antidewino" >}}) pour le détail de cette architecture.
+L’anneau n’est jamais raccordé directement à une sortie de l’Arduino. AntiDewino ne nécessite pas de pilote INDI : sa commande utilise directement la liaison série USB. Consulter la [documentation d’AntiDewino]({{< ref "/astronomie/materiel/antidewino" >}}) pour le câblage et le fonctionnement détaillés.
 
 ## Flux et commandes
 
@@ -59,4 +63,6 @@ L’anneau est alimenté en 12 V et n’est jamais raccordé directement à une 
 | KStars / Ekos | Serveur INDI | INDI / réseau | Pilotage et acquisition |
 | GPS U-Blox | Serveur INDI | USB/IP | Position et synchronisation |
 | Joystick | Serveur INDI | USB/IP | Commande manuelle de la monture |
-| Arduino Uno / AntiDewino | Anneau chauffant 12 V | Commande par étage de puissance | Prévention de la rosée sur la lame correctrice |
+| Ordinateur de commande | Arduino Uno / AntiDewino | USB / Firmata | Envoi de la consigne de chauffe |
+| Arduino Uno / AntiDewino | Module D4184 | PWM sur D9 | Modulation de la puissance |
+| Module D4184 | Anneau chauffant 12 V | Alimentation de puissance | Prévention de la rosée sur la lame correctrice |
