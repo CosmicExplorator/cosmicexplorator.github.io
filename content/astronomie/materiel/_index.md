@@ -1,7 +1,7 @@
 ---
 title: "Matériel"
-description: "Connexion et partage des équipements utilisés pour l’observation."
+description: "Équipements, contrôleurs et projets électroniques de l’observatoire."
 weight: 10
 ---
 
-Guides consacrés aux périphériques, aux contrôleurs et à leur connexion aux logiciels d’astronomie.
+Guides consacrés aux équipements, à leur conception et à leur connexion aux logiciels d’astronomie.

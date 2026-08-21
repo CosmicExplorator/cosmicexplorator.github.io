@@ -13,5 +13,6 @@ weight: 30
 | Mise au point | Focuser Celestron SCT | `indi_celestron_sct_focus` | USB | Mise au point motorisée |
 | Localisation | GPS U-Blox | `indi_gpsd` | USB / USB-IP | Position et synchronisation |
 | Pilotage | Joystick | `indi_joystick` | USB-IP | Commande manuelle |
+| Anti-rosée | AntiDewino | Autonome | À définir | Régulation du ruban chauffant (en conception) |
 | Serveur | Serveur Ubuntu 26.04 | `INDI Server` | Réseau | Centralisation des équipements |
 | Station cliente | KStars / Ekos | `Client INDI` | Réseau | Pilotage des sessions |

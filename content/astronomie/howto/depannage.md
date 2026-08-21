@@ -26,6 +26,14 @@ Cette page capitalise simplement les problèmes rencontrés et les solutions val
 - **Chemin :** `KStars → Outils → Ekos → Monture → État du parcage`, puis `Panneau de contrôle INDI → EQMod Mount`.
 - **Contrôle INDI :** `Panneau de contrôle INDI → EQMod Mount → Gestion des sites → État : Parked`.
 
+## Aucun mouvement avec les commandes Est/Ouest
+
+- **Problème :** la monture est connectée et déparquée, mais un clic sur `Est` ou `Ouest` ne produit aucun mouvement perceptible.
+- **Cause :** les boutons de mouvement sont actifs uniquement pendant leur maintien. Un clic bref démarre et arrête le déplacement presque instantanément ; le journal affiche alors `Starting West slew`, puis `West Slew stopped` à la même seconde.
+- **Solution :** dans `Panneau de contrôle INDI → EQMod Mount → Contrôle du mouvement`, choisir `32×`, puis maintenir `Est` ou `Ouest` enfoncé. Tester d'abord pendant 2 à 3 secondes.
+- **Rotation de 15° :** à `32×`, maintenir le même bouton pendant environ `1 min 53 s`. Pour l'alignement polaire, effectuer les deux rotations dans le même sens, sans desserrer les freins.
+- **Sécurité :** surveiller les câbles et garder le bouton `STOP` accessible pendant le déplacement.
+
 ## Guidage très instable
 
 - **Problème :** le guidage affiche un RMS compris entre 16 et 23 secondes d’arc.
