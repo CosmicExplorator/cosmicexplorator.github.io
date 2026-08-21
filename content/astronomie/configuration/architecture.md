@@ -22,9 +22,9 @@ flowchart LR
         F["Focuser Celestron SCT"]
     end
 
-    subgraph DEW["Gestion de la rosée - en conception"]
-        A["AntiDewino"]
-        R["Ruban chauffant"]
+    subgraph DEW["Gestion autonome de la rosée"]
+        A["Arduino Uno<br/>AntiDewino"]
+        R["Anneau chauffant 12 V<br/>lame correctrice"]
     end
 
     K <-->|"Protocole INDI / réseau"| I
@@ -48,9 +48,9 @@ Le serveur Ubuntu centralise les pilotes et les profils matériels. La monture, 
 
 ## Gestion de la rosée
 
-**AntiDewino** est un contrôleur Arduino autonome, actuellement en phase de conception. Il doit mesurer les conditions autour du télescope et ajuster la puissance du ruban chauffant placé sur la lame.
+**AntiDewino** est un contrôleur autonome basé sur un Arduino Uno. Il mesure les conditions autour du télescope et ajuste, par l’intermédiaire d’un étage de puissance, la puissance de l’anneau chauffant installé sur la lame correctrice du C8 EdgeHD.
 
-Ce contrôleur ne dépend pas du serveur INDI dans l’architecture actuelle. Son circuit de puissance, ses capteurs et ses connexions restent à valider. Consulter la [documentation d’AntiDewino]({{< ref "/astronomie/materiel/antidewino" >}}) pour suivre sa conception.
+L’anneau est alimenté en 12 V et n’est jamais raccordé directement à une sortie de l’Arduino. AntiDewino fonctionne indépendamment du serveur INDI et de KStars/Ekos. Consulter la [documentation d’AntiDewino]({{< ref "/astronomie/materiel/antidewino" >}}) pour le détail de cette architecture.
 
 ## Flux et commandes
 
@@ -59,4 +59,4 @@ Ce contrôleur ne dépend pas du serveur INDI dans l’architecture actuelle. So
 | KStars / Ekos | Serveur INDI | INDI / réseau | Pilotage et acquisition |
 | GPS U-Blox | Serveur INDI | USB/IP | Position et synchronisation |
 | Joystick | Serveur INDI | USB/IP | Commande manuelle de la monture |
-| AntiDewino | Ruban chauffant | Commande de puissance | Prévention de la rosée (en conception) |
+| Arduino Uno / AntiDewino | Anneau chauffant 12 V | Commande par étage de puissance | Prévention de la rosée sur la lame correctrice |

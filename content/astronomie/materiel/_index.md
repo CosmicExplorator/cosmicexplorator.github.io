@@ -4,4 +4,4 @@ description: "Équipements, contrôleurs et projets électroniques de l’observ
 weight: 10
 ---
 
-Guides consacrés aux équipements, à leur conception et à leur connexion aux logiciels d’astronomie.
+Guides consacrés aux équipements, à leur architecture et à leur connexion aux logiciels d’astronomie.
