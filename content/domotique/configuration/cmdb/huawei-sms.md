@@ -1,6 +1,6 @@
 ---
 title: "Composant Huawei SMS"
-description: "Fiche CMDB du composant local de gestion des SMS."
+description: "Fiche CMDB du composant local de gestion des SMS et des contacts SIM."
 weight: 50
 ---
 
@@ -32,9 +32,19 @@ weight: 50
 |---|---|
 | Entité | `sensor.sms_huawei_e3372` |
 | Source | `http://192.168.8.1/` |
-| Attribut | `messages` |
-| Champs | `id`, `from`, `date`, `content`, `unread` |
+| Attributs | `messages`, `contacts` |
+| Champs | `id`, `from`, `contact_name`, `date`, `content`, `unread` |
 | Sur erreur | Dernières données conservées ; état indisponible |
+
+## Contacts
+
+| Attribut | Valeur |
+|---|---|
+| Source | Carnet d'adresses de l'API HiLink (`client.pb`) |
+| Stockage visé | Carte SIM (`save_type: 1`) |
+| Correspondance | Numéro normalisé au format international lorsque possible |
+| Repli | Le numéro brut reste affiché si aucun contact ne correspond |
+| Compatibilité | Dépend du firmware HiLink de la clé E3372 |
 
 ## Services
 
@@ -43,6 +53,8 @@ weight: 50
 | `huawei_sms.send` | `phone_number`, `message` | Envoi |
 | `huawei_sms.delete` | `message_id` | Suppression unitaire |
 | `huawei_sms.delete_all` | Aucun | Suppression complète irréversible |
+| `huawei_sms.add_contact` | `name`, `phone_number` | Ajout d'un contact sur la SIM |
+| `huawei_sms.delete_contact` | `contact_id` | Suppression d'un contact |
 
 ## Recorder
 

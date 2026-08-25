@@ -1,6 +1,6 @@
 ---
 title: "Configurer une clé Huawei E3372 dans Home Assistant"
-description: "Intégration LTE, reconnexion automatique et préparation de la boîte de réception SMS."
+description: "Intégration LTE, reconnexion automatique, SMS et contacts enregistrés sur la SIM."
 weight: 10
 ---
 
@@ -68,9 +68,9 @@ L’automation est enregistrée dans `automations/network/huawei_e3372.yaml`, pu
 automation network: !include_dir_merge_list automations/network/
 ```
 
-## Préparer l’accès aux SMS
+## Préparer l’accès aux SMS et aux contacts
 
-La bibliothèque Python `huawei-lte-api` est utilisée par le composant local présenté dans le [HowTo consacré à la vue SMS]({{< ref "/domotique/howto/vue-sms-huawei" >}}). Le capteur interroge la boîte de réception toutes les minutes et expose les messages dans ses attributs.
+La bibliothèque Python `huawei-lte-api` est utilisée par le composant local présenté dans le [HowTo consacré à la vue SMS]({{< ref "/domotique/howto/vue-sms-huawei" >}}). Le capteur interroge la boîte de réception et le carnet d'adresses toutes les minutes. Il expose le nom du contact avec chaque message lorsqu'une correspondance est trouvée.
 
 ```yaml
 sensor:
@@ -86,6 +86,7 @@ sensor:
 
 1. Ouvrir **Outils de développement → États** et vérifier que les entités `local_e3372` répondent.
 2. Couper temporairement la connexion mobile et contrôler le déclenchement de l’automation.
-3. Vérifier que `sensor.sms_huawei_e3372` est disponible et possède un attribut `messages`.
+3. Vérifier que `sensor.sms_huawei_e3372` est disponible et possède les attributs `messages` et `contacts`.
+4. Ajouter un contact de test avec l'action `huawei_sms.add_contact`, puis vérifier que son nom remplace le numéro dans la vue SMS.
 
 L’intégration et la carte SMS communiquent uniquement avec l’API locale de la clé. Si la clé est placée sur un autre sous-réseau, le routage et les règles de pare-feu doivent permettre l’accès à son adresse HiLink.
