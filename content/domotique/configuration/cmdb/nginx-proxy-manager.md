@@ -10,7 +10,7 @@ weight: 20
 |---|---|
 | Produit | Nginx Proxy Manager |
 | Déploiement | Add-on Home Assistant |
-| Version | À relever |
+| Version | Exemple : `2.12.6` — visible dans l'interface de l'add-on |
 | Administration | `http://<IP_HAOS>:81` |
 | Rôle | Reverse proxy et terminaison TLS |
 
@@ -18,13 +18,13 @@ weight: 20
 
 | Attribut | Valeur |
 |---|---|
-| FQDN public | À relever |
-| Schéma amont | À relever |
-| Hôte amont | À relever |
-| Port amont | À relever |
-| WebSocket | À relever |
-| Blocage des exploits courants | À relever |
-| Redirection HTTP vers HTTPS | À relever |
+| FQDN public | Exemple réservé : `ha.example.com` |
+| Schéma amont | Exemple : `http` |
+| Hôte amont | Exemple privé : `192.0.2.10` |
+| Port amont | Exemple Home Assistant : `8123/TCP` |
+| WebSocket | Exemple : `activé` |
+| Blocage des exploits courants | Exemple : `activé` |
+| Redirection HTTP vers HTTPS | Exemple : `Force SSL activé` |
 | Certificat affecté | Let's Encrypt, nom à relever |
 
 ## Flux
@@ -34,16 +34,16 @@ weight: 20
 | Internet | Nginx Proxy Manager | `443/TCP` | Accès HTTPS |
 | Internet | Nginx Proxy Manager | `80/TCP` | Redirection HTTP |
 | Réseau d'administration | HAOS | `81/TCP` | Administration NPM |
-| Nginx Proxy Manager | Home Assistant | À relever | Proxy applicatif |
+| Nginx Proxy Manager | Home Assistant | Exemple : `8123/TCP` | Proxy applicatif |
 
 ## Contrôles
 
 | Contrôle | Valeur |
 |---|---|
-| Port 81 limité au LAN/VPN | À vérifier |
-| Compte administrateur nominatif | À vérifier |
-| MFA | À relever |
-| Sauvegarde NPM | À relever |
-| Journaux d'accès | À relever |
+| Port 81 limité au LAN/VPN | Exemple attendu : `oui, filtré par pare-feu` |
+| Compte administrateur nominatif | Exemple attendu : `oui, compte distinct par administrateur` |
+| MFA | Exemple : `non disponible` ou `protégé par un SSO avec MFA` |
+| Sauvegarde NPM | Exemple : `incluse dans la sauvegarde HAOS quotidienne` |
+| Journaux d'accès | Exemple : `conservés 30 jours` |
 
 ## Procédure

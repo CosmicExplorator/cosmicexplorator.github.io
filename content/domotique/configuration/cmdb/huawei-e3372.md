@@ -12,8 +12,8 @@ weight: 40
 | Mode | HiLink |
 | Adresse | `192.168.8.1` |
 | Interface | `http://192.168.8.1/` |
-| Firmware | À relever |
-| IMEI / carte SIM | À relever hors dépôt public |
+| Firmware | Exemple : `22.xxx.xx.xx.xxx` — interface HiLink → Informations appareil |
+| IMEI / carte SIM | Format : IMEI à 15 chiffres et ICCID à 19–20 chiffres ; stocker hors dépôt public |
 | Usage | Secours LTE, télémétrie et SMS |
 
 ## Intégration

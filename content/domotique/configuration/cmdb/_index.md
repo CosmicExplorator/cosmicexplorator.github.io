@@ -4,7 +4,7 @@ description: "Inventaire technique des composants de l'instance Home Assistant."
 weight: 5
 ---
 
-Une fiche par composant. Les valeurs inconnues sont marquées `À relever`.
+Une fiche par composant. Une valeur précédée de `Exemple :` est fictive et doit être remplacée.
 
 | Composant | Fonction |
 |---|---|

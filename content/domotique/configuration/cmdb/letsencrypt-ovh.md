@@ -12,8 +12,8 @@ weight: 30
 | Gestionnaire ACME | Nginx Proxy Manager |
 | Validation | DNS-01 |
 | Fournisseur DNS | OVH |
-| FQDN couvert | À relever |
-| SAN supplémentaires | À relever |
+| FQDN couvert | Exemple réservé : `ha.example.com` |
+| SAN supplémentaires | Exemple : `aucun` ou `*.ha.example.com` |
 | Expiration | Dynamique ; à superviser |
 | Renouvellement | Automatique via Nginx Proxy Manager |
 
@@ -21,12 +21,12 @@ weight: 30
 
 | Attribut | Valeur |
 |---|---|
-| Endpoint | À relever |
+| Endpoint | Exemple : `ovh-eu` — région du compte OVH API |
 | Application key | Présence à vérifier ; secret non documenté |
 | Application secret | Présence à vérifier ; secret non documenté |
 | Consumer key | Présence à vérifier ; secret non documenté |
 | Droits | Limiter à la zone DNS concernée |
-| Rotation | À planifier |
+| Rotation | Exemple : `annuelle et immédiatement après exposition suspectée` |
 
 ## Dépendances
 
