@@ -1,7 +1,7 @@
 ---
 title: "Domotique"
-description: "Projets et automatisations pour la maison."
+description: "Guides pour configurer et superviser les équipements de la maison connectée."
 weight: 30
 ---
 
-Cette rubrique accueillera les projets et automatisations autour de la maison connectée.
+Installation, configuration et utilisation de Home Assistant, des équipements réseau et des interfaces de supervision.
