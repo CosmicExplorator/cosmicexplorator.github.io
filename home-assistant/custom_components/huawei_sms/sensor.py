@@ -213,9 +213,26 @@ class HuaweiSmsSensor(SensorEntity):
         return messages, contacts
 
     def _normalize_contacts(self, payload: dict[str, Any]) -> list[dict[str, str]]:
-        phonebook = payload.get("PhoneBook", payload)
-        pb_list = phonebook.get("PbList", {}) if isinstance(phonebook, dict) else {}
-        entries = pb_list.get("PbItem", []) if isinstance(pb_list, dict) else []
+        # Most HiLink firmwares return Phonebooks > Phonebook. Keep the
+        # older PhoneBook > PbList > PbItem shape as a compatibility fallback.
+        phonebooks = payload.get("Phonebooks", {})
+        entries = (
+            phonebooks.get("Phonebook", [])
+            if isinstance(phonebooks, dict)
+            else []
+        )
+        if not entries:
+            phonebook = payload.get("PhoneBook", payload)
+            pb_list = (
+                phonebook.get("PbList", {})
+                if isinstance(phonebook, dict)
+                else {}
+            )
+            entries = (
+                pb_list.get("PbItem", [])
+                if isinstance(pb_list, dict)
+                else []
+            )
         if isinstance(entries, dict):
             entries = [entries]
         contacts = []
@@ -285,12 +302,22 @@ class HuaweiSmsSensor(SensorEntity):
     async def async_add_contact(self, name: str, phone_number: str) -> None:
         if not name.strip() or not phone_number.strip():
             raise ValueError("Contact name and phone number must not be empty")
+        # Work around huawei-lte-api pb_new(): its non-string XML keys
+        # are rejected by recent xmltodict versions.
         await self._run_and_refresh(
-            self._client.pb.pb_new,
-            0,
-            SIM_SAVE_TYPE,
-            name.strip(),
-            phone_number.strip(),
+            self._client.pb._session.post_set,
+            "pb/pb-new",
+            {
+                "GroupID": 0,
+                "SaveType": SIM_SAVE_TYPE,
+                "Field": [
+                    {"Name": "FormattedName", "Value": name.strip()},
+                    {"Name": "MobilePhone", "Value": phone_number.strip()},
+                    {"Name": "HomePhone", "Value": ""},
+                    {"Name": "WorkPhone", "Value": ""},
+                    {"Name": "WorkEmail", "Value": ""},
+                ],
+            },
         )
 
     async def async_delete_contact(self, contact_id: int) -> None:
