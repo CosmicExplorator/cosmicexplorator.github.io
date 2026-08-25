@@ -4,7 +4,7 @@ description: "Câblage, installation du firmware et tests de l’Arduino d’Ant
 weight: 20
 ---
 
-Cette page décrit la partie Arduino d’AntiDewino. L’[architecture générale]({{< ref "architecture" >}}) présente séparément la commande USB et le circuit de puissance 12 V.
+Cette page décrit la partie Arduino d’AntiDewino. L’[architecture générale]({{< ref "/astronomie/materiel/antidewino/architecture" >}}) présente séparément la commande USB et le circuit de puissance 12 V.
 
 ## Matériel nécessaire
 
@@ -45,7 +45,8 @@ Les programmes du dossier `firmware` sont indépendants et doivent être télév
 1. `test_led_rgb` vérifie les trois couleurs de la LED ;
 2. `diagnostic_d9` vérifie la sortie D9, reliée temporairement à A0 avec le D4184 débranché ;
 3. `test_d4184_moteur_lent` vérifie doucement le module avec une petite charge ;
-4. `test_d4184_marche_arret` teste trois niveaux de puissance.
+4. `test_d4184_moteur` fait varier progressivement la commande du module ;
+5. `test_d4184_marche_arret` teste trois niveaux de puissance.
 
 Après les essais, téléverser de nouveau `antidewino_firmata.ino`.
 

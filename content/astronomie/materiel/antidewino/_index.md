@@ -18,7 +18,7 @@ La logique de commande et le circuit de puissance sont séparés. L’Arduino ne
 
 ## Documentation
 
-- [Architecture d’AntiDewino]({{< ref "architecture" >}}) : flux de commande, câblage, niveaux et sécurité ;
-- [Arduino Uno]({{< ref "arduino" >}}) : téléversement du firmware et programmes de test.
+- [Architecture d’AntiDewino]({{< ref "/astronomie/materiel/antidewino/architecture" >}}) : flux de commande, câblage, niveaux et sécurité ;
+- [Arduino Uno]({{< ref "/astronomie/materiel/antidewino/arduino" >}}) : téléversement du firmware et programmes de test.
 
 > **Sécurité :** l’anneau doit disposer d’une alimentation 12 V protégée par un fusible adapté. Sa puissance ne doit jamais transiter par une sortie de l’Arduino.

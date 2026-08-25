@@ -34,6 +34,8 @@ flowchart LR
 
 AntiDewino ne dépend pas d’un pilote INDI. La communication de commande passe directement par la liaison série USB et Firmata.
 
+Le dépôt AntiDewino fournit le firmware embarqué et les programmes de test. L’application exécutée sur l’ordinateur pour produire et envoyer la consigne n’y est pas incluse actuellement.
+
 ## Câblage de commande
 
 | Arduino Uno | Connexion | Fonction |
@@ -78,6 +80,7 @@ Le dépôt `AntiDewino` contient le firmware normal et plusieurs programmes de d
 | `test_led_rgb` | Vérification des trois canaux de la LED |
 | `diagnostic_d9` | Vérification de D9 avec un retour de mesure sur A0, D4184 débranché |
 | `test_d4184_moteur_lent` | Essai prudent du D4184 avec une petite charge |
+| `test_d4184_moteur` | Montée et descente progressives de la commande du D4184 |
 | `test_d4184_marche_arret` | Essai des niveaux 25 %, 60 % et 100 % |
 
-Après un diagnostic, il faut téléverser de nouveau `antidewino_firmata.ino` pour rétablir le fonctionnement normal. Le [guide Arduino Uno]({{< ref "arduino" >}}) détaille le téléversement et les essais.
+Après un diagnostic, il faut téléverser de nouveau `antidewino_firmata.ino` pour rétablir le fonctionnement normal. Le [guide Arduino Uno]({{< ref "/astronomie/materiel/antidewino/arduino" >}}) détaille le téléversement et les essais.
