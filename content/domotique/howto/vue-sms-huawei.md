@@ -263,11 +263,11 @@ Copier `huawei-sms-card.js` dans le répertoire `www/`, puis déclarer la ressou
 ```yaml
 lovelace:
   resources:
-    - url: /local/huawei-sms-card.js?v=4
+    - url: /local/huawei-sms-card.js?v=5
       type: module
 ```
 
-Le paramètre `?v=4` sert de cache-buster. Il faut l’incrémenter après une modification importante du fichier JavaScript afin de forcer le navigateur à télécharger la nouvelle version.
+Le paramètre `?v=5` sert de cache-buster. Il faut l’incrémenter après une modification importante du fichier JavaScript afin de forcer le navigateur à télécharger la nouvelle version.
 
 La carte échappe le numéro, la date et le contenu avant insertion dans le DOM. Elle demande aussi une confirmation avant la suppression globale, qui est irréversible.
 

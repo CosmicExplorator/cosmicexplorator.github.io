@@ -31,7 +31,7 @@ weight: 60
 |---|---|
 | Type | `custom:huawei-sms-card` |
 | Fichier | `/config/www/huawei-sms-card.js` |
-| Ressource | `/local/huawei-sms-card.js?v=4` |
+| Ressource | `/local/huawei-sms-card.js?v=5` |
 | Type de ressource | `module` |
 | Entité | `sensor.sms_huawei_e3372` |
 | Actions | Lecture, envoi, suppression unitaire et globale |
