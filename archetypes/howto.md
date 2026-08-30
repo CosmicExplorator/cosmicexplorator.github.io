@@ -1,26 +1,36 @@
 ---
-title: "HowTo — Nom du problème"
+title: "Nom de la procédure"
 date: {{ .Date }}
-description: "Diagnostic et résolution vérifiée."
+description: "Objectif concret en une phrase."
 ---
 
-## RETEX
-
-- **Problème :** …
-- **Solution :** …
-
-## Chemin dans KStars / Ekos
-
-`KStars → Outils → Ekos → …`
-
-## Chemin dans INDI
-
-`Panneau de contrôle INDI → Équipement → Onglet → Action`
-
-## Procédure
-
-1. …
-
-## Sessions concernées
+## Prérequis
 
 - …
+
+## 1. Première étape
+
+**Chemin :** `Application → Menu → Action`
+
+1. …
+2. …
+
+```bash
+commande --option valeur
+```
+
+## 2. Vérifier
+
+- [ ] Résultat attendu vérifié
+
+## Dépannage
+
+| Problème | Solution |
+|---|---|
+| … | … |
+
+## Checklist
+
+- [ ] Prérequis validés
+- [ ] Procédure terminée
+- [ ] Résultat contrôlé

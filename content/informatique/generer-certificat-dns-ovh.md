@@ -1,105 +1,113 @@
 ---
-title: Générer un certificat Let's Encrypt avec un challenge DNS OVH
+title: "Générer un certificat Let's Encrypt avec OVH"
 url: /itech/crt_management/genCrtChallengeDnsOvh/
-description: Créer un certificat Let's Encrypt avec Certbot et l’API DNS d’OVH.
+description: "Créer un certificat Let's Encrypt avec Certbot et le challenge DNS OVH."
 weight: 10
 ---
 
+## Prérequis
 
-Prérequis: disposer d’un nom de domaine chez OVH
+- un domaine géré par OVH ;
+- Python 3 et `venv` ;
+- un accès administrateur au serveur.
 
+## 1. Créer les identifiants OVH
 
-# Configurer et récupérer les éléments de l’API (ovh)
+Ouvrir le [formulaire de création d’un jeton OVH](https://www.ovh.com/auth/api/createToken), puis autoriser :
 
+- `GET /domain/zone/*` ;
+- `PUT /domain/zone/*` ;
+- `POST /domain/zone/*` ;
+- `DELETE /domain/zone/*` ;
+- `POST /domain/zone/*/refresh`.
 
-[Lien Api OVH] (https://www.ovh.com/auth/api/createToken)
+Créer `/root/letsencrypt/.secrets/ovh.ini` :
 
-
-Sur ce lien: créer l'api si non existante et entrez les routes suivantes (elles correspondent aux actions nécessaires pour Certbot et la validation :
-
-- GET /domain/zone/* : Lecture des zones DNS.
-- PUT /domain/zone/* : Modification des enregistrements DNS.
-- POST /domain/zone/* : Ajouter des enregistrements DNS.
-- DELETE /domain/zone/* : Supprimer des enregistrements DNS.
-- POST /domain/zone/*/refresh : Rafraîchir la zone DNS après des modifications.
-
-En retour copier les éléments renvoyés dans un fichier $USER_HOME/ovh.ini
-
-
-```bash
-
+```ini
 dns_ovh_endpoint = ovh-eu
-dns_ovh_application_key = ebf.....f
-dns_ovh_application_secret = 448......e
-dns_ovh_consumer_key = 5bd.....7 
-
-```
-
-
-# Installer cerbot et ses dépendances 
-
-```
-root@cloud:~#python3 -m venv .venv/py3.12-certbot
-root@cloud:~#source  .venv/py3.12-certbot/bin/activate
-(py3.12-certbot) root@cloud:~#pip install pip install --upgrade certbot certbot-dns-ovh
- ```
-
-Les secrets de l'api
-```
-(py3.12-certbot) root@cloud:~/letsencrypt# ls -alh ./.secrets/
-total 12K
-drwxr-xr-x 2 root     root     4,0K août   5 13:17 .
-drwxr-xr-x 6 www-data www-data 4,0K août   5 13:17 ..
--rw------- 1 www-data www-data  229 août   5 13:45 ovh.ini
-(py3.12-certbot) root@cloud:~/letsencrypt# 
-(py3.12-certbot) root@cloud:~/letsencrypt# cat ./.secrets/ovh.ini 
-```
-
-# Informations pour l'accès à l'API OVH
-dns_ovh_endpoint = ovh-eu
-dns_ovh_application_key = ....
+dns_ovh_application_key = ...
 dns_ovh_application_secret = ...
 dns_ovh_consumer_key = ...
-(py3.12-certbot) root@cloud:~/letsencrypt# 
- 
-Fichier de configuration pour certbot
-(py3.12-certbot) root@cloud:~/letsencrypt# 
-(py3.12-certbot) root@cloud:~/letsencrypt# cd config/
-(py3.12-certbot) root@cloud:~/letsencrypt/config# 
-(py3.12-certbot) root@cloud:~/letsencrypt/config# cat cli.ini 
-# cli.ini – configuration globale certbot
+```
+
+```bash
+chmod 600 /root/letsencrypt/.secrets/ovh.ini
+```
+
+## 2. Installer Certbot
+
+```bash
+python3 -m venv /root/.venv/certbot
+source /root/.venv/certbot/bin/activate
+pip install --upgrade pip certbot certbot-dns-ovh
+```
+
+## 3. Configurer Certbot
+
+Créer `/root/letsencrypt/config/cli.ini` :
+
+```ini
 config-dir = /root/letsencrypt/config
 work-dir = /root/letsencrypt/work
 logs-dir = /root/letsencrypt/logs
-# Adresse e-mail par défaut
-email = xxxxx@gmail.com
+email = adresse@example.com
 agree-tos = true
 no-eff-email = true
- 
-# Générer les certificats 
-```bash
-(py3.12-certbot) root@cloud:~# certbot certonly --config /root/letsencrypt/config/cli.ini --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini -d "*.cosmic.ovh" -d "cosmic.ovh"    -d "*.grey.cosmic.ovh"   -d "*.green.cosmic.ovh"
-```
-#Lister les certificats
-```bash
-(py3.12-certbot) root@cloud:~/letsencrypt# certbot certificates   --concertbot certificates --config /root/letsencrypt/config/cli.ini --dns-ovh --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini
 ```
 
-# Copie des *pem vers les equipements cibles
+## 4. Générer le certificat
+
 ```bash
-(py3.12-certbot) root@cloud:~/letsencrypt/config/live/xxxx.ovh# scp -P 2222 -O ./*pem root@10.0.1.1:/etc/ssl/xxxx.ovh/
+certbot certonly \
+  --config /root/letsencrypt/config/cli.ini \
+  --dns-ovh \
+  --dns-ovh-credentials /root/letsencrypt/.secrets/ovh.ini \
+  -d "*.example.com" \
+  -d "example.com"
 ```
 
+## 5. Contrôler le résultat
 
-# Révocation et suppression des certificats
 ```bash
-(py3.12-certbot) root@cloud:~#certbot revoke   --cert-path /root/letsencrypt/config/live/xxxx.ovh/cert.pem   --key-path /root/letsencrypt/config/live/xxxx.ovh/privkey.pem --config /root/letsencrypt/config/cli.ini
+certbot certificates --config /root/letsencrypt/config/cli.ini
 ```
-# Cas d'une instance openwrt : https
+
+Les fichiers sont dans `/root/letsencrypt/config/live/example.com/`.
+
+## 6. Déployer le certificat
+
+Exemple avec SSH :
+
 ```bash
-root@router:/etc/ssl#chmod 600 /etc/ssl/cosmic.ovh/privkey.pem
-root@router:/etc/ssl#chmod 644 /etc/ssl/cosmic.ovh/fullchain.pem
-root@router:/etc/ssl#uci set uhttpd.main.cert='/etc/ssl/cosmic.ovh/fullchain.pem' root@router:/etc/ssl#uci set uhttpd.main.key='/etc/ssl/cosmic.ovh/privkey.pem'
-root@router:/etc/ssl#uci commit uhttpd
-root@router:/etc/ssl#/etc/init.d/uhttpd restart
+scp -P 2222 -O \
+  /root/letsencrypt/config/live/example.com/*.pem \
+  root@10.0.1.1:/etc/ssl/example.com/
 ```
+
+Pour OpenWrt :
+
+```bash
+chmod 600 /etc/ssl/example.com/privkey.pem
+chmod 644 /etc/ssl/example.com/fullchain.pem
+uci set uhttpd.main.cert='/etc/ssl/example.com/fullchain.pem'
+uci set uhttpd.main.key='/etc/ssl/example.com/privkey.pem'
+uci commit uhttpd
+/etc/init.d/uhttpd restart
+```
+
+## Révoquer le certificat
+
+```bash
+certbot revoke \
+  --cert-path /root/letsencrypt/config/live/example.com/cert.pem \
+  --key-path /root/letsencrypt/config/live/example.com/privkey.pem \
+  --config /root/letsencrypt/config/cli.ini
+```
+
+## Checklist
+
+- [ ] Jeton OVH créé avec les droits nécessaires
+- [ ] `ovh.ini` protégé en mode `600`
+- [ ] Certificat généré et contrôlé
+- [ ] Certificat déployé
+- [ ] HTTPS vérifié sur la cible

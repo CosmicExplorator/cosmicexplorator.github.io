@@ -4,4 +4,4 @@ description: "Administration de services auto-hébergés, certificats TLS et sau
 weight: 20
 ---
 
-Guides pratiques pour administrer les services du réseau, automatiser les certificats et sécuriser les sauvegardes.
+Procédures d’administration, de gestion des certificats et de sauvegarde.

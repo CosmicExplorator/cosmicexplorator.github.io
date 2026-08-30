@@ -1,185 +1,145 @@
 ---
-title: Configurer et Utiliser un Joystick en Astronomie
+title: "Partager un joystick avec USB/IP"
 url: /configUseJoystick/
-description: Partager un joystick avec USB/IP pour piloter une monture équatoriale.
+description: "Connecter à distance un joystick au serveur INDI avec USB/IP."
 weight: 30
 ---
 
+## Architecture
 
+{{< mermaid >}}
+flowchart LR
+    J["Joystick"] --> S["Station cliente<br/>usbip-host"]
+    S -->|"TCP 3240"| I["Serveur INDI<br/>vhci-hcd"]
+    I --> E["Pilote INDI Joystick"]
+{{< /mermaid >}}
 
-# Piloter une monture equatoriale avec un joystick
- 
-Architecture de l'observatoire
- 
-J'ai opté pour une solution qui permet de centraliser tous les périphériques "astro" sur le serveur indi. Le joystick connecter sur la station cliente, va être transmis au serveur via "ip". Ainsi le joystick sera vu comme étant directement connecté au serveur.
-Pour cela nous utilisons le service usbipd.
- 
- 
-Pré-requis:
-Serveur indi et station cliente sont sur des distributions linux Ubuntu
+## Prérequis
+
+- Ubuntu sur les deux machines ;
+- accès administrateur ;
+- port TCP `3240` autorisé entre les machines ;
+- joystick branché à la station cliente.
+
+## 1. Préparer la station cliente
 
 ```bash
-root@station:~# cat /etc/os-release
-PRETTY_NAME="Ubuntu 24.04.1 LTS"
-NAME="Ubuntu"
-VERSION_ID="24.04"
-VERSION="24.04.1 LTS (Noble Numbat)"
-VERSION_CODENAME=noble
-ID=ubuntu
-ID_LIKE=debian
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-UBUNTU_CODENAME=noble
-LOGO=ubuntu-logo
-```
-  
-# Configuration station (reliée au joystick)
-## Installation du service usbip
-```bash
-root@station:~#sudo apt install -y linux-tools-generic
-root@station:~# sudo modprobe usbip-core
-root@station:~# sudo modprobe usbip-host
+sudo apt install -y linux-tools-generic
+sudo modprobe usbip-core
+sudo modprobe usbip-host
 ```
 
-## Activation des modules
-```bash
-root@station:~# echo -e "usbip-core\nusbip_common_mod\nusbip-host" | \
-sudo tee /etc/modules-load.d/usbip.conf > /dev/null
+Ajouter dans `/etc/modules-load.d/usbip.conf` :
+
+```text
+usbip-core
+usbip-host
 ```
 
-## Recherche du joystick
+## 2. Identifier et exporter le joystick
+
 ```bash
-root@station:~# sudo usbip list -l
- - busid 3-12 (8087:07dc)
-   Intel Corp. : Bluetooth wireless interface (8087:07dc)
-
- - .......
-   .......
-
- - busid X-Y (06a3:0c28)        <===== le joystick est reconnu (noté: X-Y)
-   Saitek PLC : unknown product (06a3:0c28)
-root@station:~# BUSID=$(usbip list -l | grep -B1 "06a3:0c28" | grep "busid" |\
-sed -E 's/.*busid ([0-9-]+).*/\1/');
-root@station:~# echo "$BUSID"
+sudo usbip list -l
 ```
 
-## Démarrage du service (manuellement)
+Noter le `BUSID`, par exemple `3-6`, puis lancer :
+
 ```bash
-root@station:~# sudo usbipd -D 
+sudo usbipd -D
+sudo usbip bind --busid=3-6
 ```
 
-## Creation d'un service (automatique)
+Contrôler l’export :
+
 ```bash
-root@station:~# bash -c 'cat > /etc/systemd/system/usbip.service <<EOF
+usbip list --remote=127.0.0.1
+```
+
+Pour arrêter l’export :
+
+```bash
+sudo usbip unbind --busid=3-6
+```
+
+## 3. Automatiser l’export
+
+Créer `/etc/systemd/system/usbip-export-joystick.service` en adaptant le `BUSID` :
+
+```ini
 [Unit]
-Description=Exports USB device over IP
-Requires=network-online.target
+Description=Export du joystick avec USB/IP
 After=network-online.target
+Wants=network-online.target
 
 [Service]
-Type=simple
-Restart=on-failure
-User=root
-Group=root
-ExecStart=/usr/lib/linux-tools/$(uname -r)/usbipd
-ExecStartPost=/bin/bash -c "sleep 2 && /usr/lib/linux-tools/$(uname -r)/usbip bind --busid=X-Y"
-ExecStop=/usr/lib/linux-tools/$(uname -r)/usbip unbind --busid=X-Y
+Type=forking
+ExecStart=/usr/sbin/usbipd -D
+ExecStartPost=/usr/sbin/usbip bind --busid=3-6
+ExecStop=/usr/sbin/usbip unbind --busid=3-6
+RemainAfterExit=yes
 
 [Install]
 WantedBy=multi-user.target
-EOF'
-
-# Recharger systemd pour prendre en compte le nouveau service
-root@station:~#systemctl daemon-reload
-
-# Activer le service pour qu'il démarre automatiquement au boot
-root@station:~#systemctl enable usbip.service
-
-# Démarrer immédiatement le service
-root@station:~#systemctl start usbip.service
-
-# Vérifier son état
-root@station:~#systemctl status usbip.service
 ```
 
- 
+Vérifier les chemins avec `command -v usbip usbipd`, puis activer le service :
 
-## Liaison du périphérique  (manuellement)
 ```bash
-sudo usbip bind -b 3-6
+sudo systemctl daemon-reload
+sudo systemctl enable --now usbip-export-joystick.service
+sudo systemctl status usbip-export-joystick.service
 ```
-## Coupure du périphérique (manuellement)
+
+## 4. Préparer le serveur INDI
+
 ```bash
-sudo usbip unbind -b 3-6
+sudo apt install -y linux-tools-generic
+sudo modprobe vhci-hcd
 ```
 
+Ajouter `vhci-hcd` dans `/etc/modules-load.d/usbip.conf`.
 
-# Configuration du serveur qui héberge  indiserver
-## Installation du service usbip
+## 5. Attacher le joystick
+
+Lister les périphériques exportés par la station :
+
 ```bash
-root@indiserver:~#sudo apt install -y linux-tools-generic
-root@indiserver:~#  sudo modprobe vhci-hcd
-Creation d'un service dédié
-
-root@indiserver:~#cat 
-[Unit]
-Description=USB/IP Daemon
-Requires=network-online.target
-After=network-online.target
-
-
-[Service]
-Type=simple
-Restart=on-failure
-User=root
-Group=root
-ExecStart=/usr/lib/linux-tools/6.11.0-17-generic/usbipd
-#ExecStartPost=/usr/lib/linux-tools/6.11.0-17-generic/usbip bind --busid=8-1
-ExecStop=/usr/lib/linux-tools/6.11.0-17-generic/usbip unbind
-
-[Install]
-WantedBy=multi-user.target
-
-root@indiserver:/etc/systemd/system# sudo systemctl start usbip
-root@indiserver:/etc/systemd/system# sudo systemctl status usbip
-root@indiserver:/etc/systemd/system# sudo systemctl stop usbip
-root@indiserver:/etc/systemd/system# sudo systemctl enable usbipd
+usbip list --remote=ADRESSE_IP_STATION
 ```
 
-## Détruire les process (usbip) existant sur le port 3240
+Attacher le joystick :
+
 ```bash
-root@indiserver:/etc/systemd/system# sudo kill -9 $(sudo lsof -t -i :3240)
+sudo usbip attach --remote=ADRESSE_IP_STATION --busid=3-6
 ```
 
-## Démarrage du service (manuellement)
+Contrôler :
+
 ```bash
-root@indiserver:~# sudo usbipd -D 
+usbip port
+lsusb
 ```
-## Connexion au périphérique (relevé l'@IP de la station)
+
+Pour le détacher :
+
 ```bash
-root@indiserver:~# sudo usbipd -D
-root@indiserver:~# sudo usbip attach -r @ip_station -b X-Y
-```
-vérification que le joystick est vu comme équipement USB sur le server
-```bash
-root@indiserver:~# lsusb
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-........
-Bus 003 Device 002: ID 06a3:0c28 Saitek PLC Aviator for Playstation 3/PC  <==== :)
+sudo usbip detach --port=0
 ```
 
+## 6. Activer le joystick dans INDI
 
-Il ne reste plus qu'à relancer le server indi avec ce nouvel équipement
-```bash
-root@indiserver:~# indiserver /usr/bin/indi_celestron_gps /usr/bin/indi_\
-celestron_sct_focus /usr/bin/indi_canon_ccd  /usr/bin/indi_joystick 
-```
-Ensuite, kstars (sur la station) après s'être connecté au serveur, proposera un nouvel onglet Joystick dans Ekos.
+1. ajouter `/usr/bin/indi_joystick` au profil INDI ;
+2. redémarrer le profil ;
+3. connecter KStars au serveur ;
+4. ouvrir l’onglet **Joystick** dans Ekos ;
+5. tester un mouvement à faible vitesse.
 
- 
+## Checklist
 
-
-
- Il est alors possible de contrôler la monture et le moteur de mise au point. Extra!
+- [ ] Joystick visible avec `usbip list -l`
+- [ ] Périphérique exporté sur la station
+- [ ] Port TCP `3240` accessible
+- [ ] Joystick attaché sur le serveur
+- [ ] Joystick visible avec `lsusb`
+- [ ] Pilote `indi_joystick` chargé
+- [ ] Axes testés à faible vitesse

@@ -4,4 +4,4 @@ description: "Procédures pas à pas et composants personnalisés validés sur l
 weight: 30
 ---
 
-Guides pratiques pour reproduire les fonctions utilisées dans Home Assistant.
+Procédures validées pour reproduire les fonctions Home Assistant.

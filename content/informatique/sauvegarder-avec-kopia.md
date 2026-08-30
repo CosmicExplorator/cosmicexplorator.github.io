@@ -1,112 +1,100 @@
 ---
-title: Sauvegarde Kopia
+title: "Sauvegarder Nextcloud avec Kopia"
 url: /itech/backup/svgWithKopia/
-description: Sauvegarder un serveur Nextcloud sur un NAS Synology avec Kopia.
+description: "Sauvegarder un serveur Nextcloud sur un NAS Synology avec Kopia."
 weight: 50
 ---
 
+## Architecture
 
-# Sauvegarder avec Kopia
+{{< mermaid >}}
+flowchart LR
+    N["Serveur Nextcloud<br/>Kopia :51515"] -->|"Montage NFS<br/>snapshot planifié"| S["NAS Synology<br/>dépôt de sauvegarde"]
+{{< /mermaid >}}
 
-Voici la procédure que j'utilise pour renouveler automatiquement un certificat
-Let's Encrypt via acme.sh et OVH DNS.
+## Prérequis
 
+- le partage NFS du NAS est monté ;
+- le NAS est actif pendant la sauvegarde ;
+- les certificats TLS de Kopia sont disponibles ;
+- les scripts de maintenance Nextcloud sont testés.
 
-## 0. Ptit mémo: architecture
+## 1. Installer Kopia
 
-
-                     +-----------------------------------+
-                     |     Serveur Nextcloud             |
-                     |-----------------------------------|
-                     |  - Service Nextcloud              |
-                     |  - Kopia (backup)  :51515         |   <------- Snapshot : 12h20
-                     +------------+----------------------+
-                                  |
-                                  | Montage NFS
-                                  v
-                     +---------------------------+
-                     |       Synology NAS        | <----------------   Demarrage quotidien: 11h50 - 13h00
-                     |---------------------------|                        - 12h00 : renew certficiat
-                     |  Stockage des sauvegardes | 
-                     +---------------------------+
-
-
-
-## 1. Installation sur Ubuntu
-
-``` bash
+```bash
 apt install kopia -y
 ```
 
-## 2. Configuration
+## 2. Vérifier le montage NFS
 
-### vérifier le montage NFS actif (démarrer le NAS)
-``` bash
-root@nextcloud:~# mount |grep nas
-10.0.1.5:/volume1/backup_nextcloud on /media/nas2b_for_kopia type nfs4 (rw,noatime,vers=4.0,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=10.0.1.10,local_lock=none,addr=10.0.1.5,_netdev)
-root@nextcloud:~#
+```bash
+mount | grep /media/nas2b_for_kopia
 ```
 
-### créer une instance server pour Kopia
-``` bash
-root@nextcloud:~# kopia repository create server
-   --url https://localhost:51515
-   --username xxxxx
-   --password xxxxxx
-   --path /media/nas2b_for_kopia
+Arrêter si le montage est absent.
+
+## 3. Créer le dépôt
+
+```bash
+kopia repository create server \
+  --url https://localhost:51515 \
+  --username USER \
+  --password PASSWORD \
+  --path /media/nas2b_for_kopia
 ```
 
-  
+## 4. Démarrer le serveur Kopia
 
-
-### créer un dépot (repo)
-``` bash
-root@nextcloud:~# /usr/bin/kopia server start
-    --address=0.0.0.0:51515
-    --ui
-    --tls-cert-file=/etc/ssl/cxxxxx/fullchain.pem
-    --tls-key-file=/etc/ssl/cxxxxx/privkey.pem
-    --server-username=xxxx
-    --server-password=xxxxx
-   --log-level=debug
-   --config-file=/root/.config/kopia/repository.config
-```
---server-username= user au login
---server-password= mdp au login
-
-### configurer une stratégie de svg (policy)
-
-ℹ️ : avant et après il faut dans mon cas, effectuer:
-- activer le mode maintenance sur nextcloud
-- faire un dump de la base de donnée
-- après le snapshot, désactiver le mode maintenance
-
-``` bash
-root@nextcloud:~# kopia policy set /media/nextcloud-raid1/nextcloud
---before-snapshot-root-action="/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_on_dump_bdd.sh"
---after-snapshot-root-action="/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_off.sh"
---snapshot-time=22:00 --password=xxxxxx
-
-```
---password= mdp du server
-
-
-output:
-
-``` bash
-Setting policy for root@nextcloud:/media/nextcloud-raid1/nextcloud
- - setting snapshot times to [12:20]
- - setting before-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_on_dump_bdd.sh" and timeout 5m0s
- - setting after-snapshot-root (essential) action command to "/media/nextcloud-raid1/nextcloud/data/emmanuel/files/Documents/itech/kopia/script/nextcloud_maintenance_off.sh" and timeout 5m0s
+```bash
+/usr/bin/kopia server start \
+  --address=0.0.0.0:51515 \
+  --ui \
+  --tls-cert-file=/etc/ssl/example.com/fullchain.pem \
+  --tls-key-file=/etc/ssl/example.com/privkey.pem \
+  --server-username=USER \
+  --server-password=PASSWORD \
+  --config-file=/root/.config/kopia/repository.config
 ```
 
+Interface : `https://ADRESSE_IP:51515`.
 
+## 5. Configurer la stratégie
 
+Avant le snapshot :
 
-### quelques captures du servive : https://@IP:51515
+- activer le mode maintenance Nextcloud ;
+- sauvegarder la base de données.
 
-![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_20-17.png)
-****
-![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-55.png)
-****
-![Serveur:51515](/assets/images/svgWithKopia/2026-02-15_19-56.png)
+Après le snapshot :
+
+- désactiver le mode maintenance.
+
+```bash
+kopia policy set /media/nextcloud-raid1/nextcloud \
+  --before-snapshot-root-action="/chemin/nextcloud_maintenance_on_dump_bdd.sh" \
+  --after-snapshot-root-action="/chemin/nextcloud_maintenance_off.sh" \
+  --snapshot-time=12:20 \
+  --password=PASSWORD
+```
+
+## 6. Contrôler
+
+- vérifier l’exécution des deux scripts ;
+- vérifier la présence du snapshot dans l’interface ;
+- consulter les journaux Kopia ;
+- effectuer un test de restauration.
+
+![Vue du serveur Kopia](/assets/images/svgWithKopia/2026-02-15_20-17.png)
+
+![Snapshots Kopia](/assets/images/svgWithKopia/2026-02-15_19-55.png)
+
+![Détail d’un snapshot](/assets/images/svgWithKopia/2026-02-15_19-56.png)
+
+## Checklist
+
+- [ ] Montage NFS actif
+- [ ] Dépôt Kopia accessible
+- [ ] Serveur HTTPS opérationnel
+- [ ] Scripts avant/après exécutés
+- [ ] Snapshot présent
+- [ ] Restauration testée
