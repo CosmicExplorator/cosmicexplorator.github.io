@@ -1,6 +1,6 @@
 baseURL = 'https://blog.cosmic.ovh/'
 defaultContentLanguage = 'fr'
-title = 'Cosmic Explorator'
+title = 'Emmanuel Brache — Cosmic Explorator'
 theme = 'aafu'
 enableRobotsTXT = true
 disableKinds = ['taxonomy', 'term']
@@ -19,9 +19,9 @@ ignoreFiles = ['themes/aafu/content/.*']
   priority = 0.5
 
 [params]
-  author = 'Emmanuel B'
-  description = 'Notes techniques autour de l’astronomie, de la domotique et de l’informatique.'
-  copyright = '© Emmanuel B'
+  author = 'Emmanuel Brache'
+  description = 'Blog d’Emmanuel Brache consacré à l’astronomie, l’astrophotographie, la domotique, Linux et l’auto-hébergement.'
+  copyright = '© Emmanuel Brache'
   signature = 'Entre étoiles et lignes de commande.'
 
   [params.theme]
@@ -53,6 +53,7 @@ ignoreFiles = ['themes/aafu/content/.*']
 [markup]
   [markup.highlight]
     noClasses = false
+
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = false
@@ -60,3 +61,4 @@ ignoreFiles = ['themes/aafu/content/.*']
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+  
