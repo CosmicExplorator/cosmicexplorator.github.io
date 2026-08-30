@@ -1,0 +1,107 @@
+{{- $isHome := .IsHome -}}
+{{- $isArticle := and .IsPage (ne .Section "") -}}
+{{- $title := cond $isHome .Site.Title (printf "%s — %s" .Title .Site.Title) -}}
+{{- $description := .Description | default .Site.Params.description | plainify | htmlUnescape | strings.TrimSpace -}}
+{{- $canonical := .Permalink -}}
+{{- $authorID := printf "%s#author" .Site.Home.Permalink -}}
+{{- $websiteID := printf "%s#website" .Site.Home.Permalink -}}
+{{- $blogID := printf "%s#blog" .Site.Home.Permalink -}}
+{{- $profileImage := "images/profile.jpg" | absURL -}}
+{{- $author := dict "@type" "Person" "@id" $authorID "name" .Site.Params.author "url" .Site.Home.Permalink "image" $profileImage -}}
+{{- $website := dict "@type" "WebSite" "@id" $websiteID "url" .Site.Home.Permalink "name" "Cosmic Explorator" "alternateName" .Site.Title "description" .Site.Params.description "inLanguage" .Site.Language.Locale "publisher" (dict "@id" $authorID) -}}
+{{- $blog := dict "@type" "Blog" "@id" $blogID "url" .Site.Home.Permalink "name" "Cosmic Explorator" "description" .Site.Params.description "inLanguage" .Site.Language.Locale "author" (dict "@id" $authorID) "publisher" (dict "@id" $authorID) "isPartOf" (dict "@id" $websiteID) -}}
+{{- $pageType := cond $isArticle "BlogPosting" "WebPage" -}}
+{{- $page := dict "@type" $pageType "@id" (printf "%s#webpage" $canonical) "url" $canonical "name" $title "headline" .Title "description" $description "inLanguage" .Site.Language.Locale "author" (dict "@id" $authorID) "isPartOf" (dict "@id" (cond $isArticle $blogID $websiteID)) -}}
+{{- $schema := dict "@context" "https://schema.org" "@graph" (slice $author $website $blog $page) -}}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $description }}" />
+  <meta name="author" content="{{ .Site.Params.author }}" />
+  <link rel="canonical" href="{{ $canonical }}" />
+
+  <meta property="og:site_name" content="Cosmic Explorator" />
+  <meta property="og:title" content="{{ $title }}" />
+  <meta property="og:description" content="{{ $description }}" />
+  <meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}" />
+  <meta property="og:url" content="{{ $canonical }}" />
+  <meta property="og:locale" content="{{ .Site.Language.Locale | replaceRE `-` `_` }}" />
+  <meta property="og:image" content="{{ $profileImage }}" />
+  <meta property="og:image:alt" content="Emmanuel Brache — Cosmic Explorator" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ $title }}" />
+  <meta name="twitter:description" content="{{ $description }}" />
+  <meta name="twitter:image" content="{{ $profileImage }}" />
+
+  <script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+  <meta name="theme-color" content="#111827" />
+  <link rel="icon" href="{{ `favicon.ico` | relURL }}" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono" />
+
+  {{- $css := resources.Get "main.css" | css.TailwindCSS -}}
+  {{- if hugo.IsProduction -}}
+    {{- with $css | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous" />
+    {{- end -}}
+  {{- else }}
+  <link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+  {{- end }}
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => acc.classList.remove("active"));
+        elem.parentElement.classList.add("active");
+        allPanels.forEach((panel) => { panel.style.maxHeight = null; });
+        const activePanel = elem.parentElement.nextElementSibling;
+        if (activePanel.id != "skill-panel" && document.querySelector("#skill-panel")) {
+          Array.from(document.querySelectorAll("#skill-percent")).forEach((bar) => { bar.style.width = "0"; });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    const html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const fixThemeToggleIcon = (currentTheme) => {
+      const themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        themeToggle.classList.toggle("bi-moon", currentTheme !== "dark");
+        themeToggle.classList.toggle("bi-brightness-high", currentTheme === "dark");
+      }
+    };
+
+    const setTheme = (currentTheme) => {
+      html.classList.toggle("dark", currentTheme === "dark");
+      window.localStorage.setItem("theme", currentTheme === "dark" ? "dark" : "light");
+      fixThemeToggleIcon(currentTheme);
+    };
+
+    if (theme == null) {
+      theme = html.classList.contains("dark") || (!html.classList.contains("light") && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    }
+    setTheme(theme);
+
+    const toggleTheme = () => setTheme(html.classList.contains("dark") ? "light" : "dark");
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+      const defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) defaultActivePanel.nextElementSibling.style.maxHeight = defaultActivePanel.nextElementSibling.scrollHeight + "px";
+    };
+
+    window.onresize = () => {
+      const defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) defaultActivePanel.nextElementSibling.style.maxHeight = defaultActivePanel.nextElementSibling.scrollHeight + "px";
+    };
+  </script>
+</head>

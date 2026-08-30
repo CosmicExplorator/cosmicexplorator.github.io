@@ -2,7 +2,8 @@
   "title": "À propos",
   "icon": "bi bi-person",
   "description": [
-    "Bienvenue sur **Cosmic Explorator**, mon carnet de notes et de réalisations techniques.",
-    "J’y partage des guides issus de mes expérimentations autour de l’astronomie, de la domotique et de l’informatique auto-hébergée."
+    "Je suis **Emmanuel Brache**, basé en France, et **Cosmic Explorator** est mon carnet de notes et de réalisations techniques.",
+    "Mon parcours se construit au fil de projets concrets autour de l’astronomie et de l’astrophotographie, de la domotique, de l’informatique, de Linux et de l’auto-hébergement.",
+    "J’y documente mes expérimentations et les solutions que je mets en œuvre, afin de partager des guides pratiques, reproductibles et sans détour."
   ]
 }
