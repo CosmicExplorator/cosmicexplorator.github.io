@@ -23,6 +23,7 @@ ignoreFiles = ['themes/aafu/content/.*']
   description = 'Blog d’Emmanuel Brache consacré à l’astronomie, l’astrophotographie, la domotique, Linux et l’auto-hébergement.'
   copyright = '© Emmanuel Brache'
   signature = 'Entre étoiles et lignes de commande.'
+  contactFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLScRpqbUgGPKNK0wGAc1pl28Rjs-5v3RQITF1AAH2TRB8cTBIA/viewform'
 
   [params.theme]
     mainTheme = 'dark'
@@ -61,4 +62,3 @@ ignoreFiles = ['themes/aafu/content/.*']
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
-  

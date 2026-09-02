@@ -1,6 +1,13 @@
 {
   "name": "Emmanuel Brache",
-  "tagline": "Astronomie · Astrophotographie · Linux · Domotique",
+  "role": "Créateur de Cosmic Explorator",
+  "introduction": "Curieux, ingénieux et débrouillard, j’ai toujours l’esprit en mouvement et mille idées à explorer. Cet enthousiasme ne m’a jamais quitté : j’aime comprendre, essayer, inventer et transformer mes idées en projets concrets.",
+  "topics": [
+    "Astronomie",
+    "Domotique",
+    "Linux",
+    "Systèmes indépendants"
+  ],
   "location": "France",
   "photo": "profile.jpg"
 }

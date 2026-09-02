@@ -1,12 +1,41 @@
-<h1 class="mb-0 font-normal">{{ hugo.Data.profile.name }}</h1>
-<h2 class="mb-0 font-normal">{{ hugo.Data.profile.tagline }}</h2>
-<h3 class="mb-4">{{ hugo.Data.profile.location }}</h3>
-<div class="mb-4 flex flex-wrap justify-center">
+<h1 class="mb-1 text-3xl font-semibold">{{ hugo.Data.profile.name }}</h1>
+<p class="mb-3 text-lg font-medium text-blue-700 dark:text-yellow-300">
+  {{ hugo.Data.profile.role }}
+</p>
+<p class="mb-4 leading-relaxed text-stone-700 dark:text-stone-200">
+  {{ hugo.Data.profile.introduction }}
+</p>
+<div class="mb-5 flex flex-wrap justify-center gap-2" aria-label="Thématiques du blog">
+  {{ range hugo.Data.profile.topics }}
+  <span class="rounded-full border border-blue-500 px-3 py-1 text-sm text-blue-800 dark:border-yellow-300 dark:text-yellow-200">
+    {{ . }}
+  </span>
+  {{ end }}
+</div>
+<div class="mb-4 flex flex-wrap justify-center gap-2">
   {{ range site.Params.social }}
-  <div class="mx-2">
-    <a class="text-2xl" href="{{ .url }}" title="{{ .title }}" rel="me">
-      <i class="mt-1 {{ .icon }}"></i>
+  <div>
+    <a
+      class="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 hover:text-white hover:no-underline dark:bg-yellow-300 dark:text-stone-900 dark:hover:bg-yellow-400 dark:hover:text-stone-900"
+      href="{{ .url }}"
+      title="Voir mon profil {{ .title }}"
+      rel="me"
+    >
+      <i class="{{ .icon }}" aria-hidden="true"></i>
+      <span>Voir mon {{ .title }}</span>
     </a>
   </div>
+  {{ end }}
+  {{ with site.Params.contactFormURL }}
+  <a
+    class="inline-flex items-center gap-2 rounded-md bg-blue-500 px-4 py-2 font-medium text-white hover:bg-blue-600 hover:text-white hover:no-underline dark:bg-blue-500 dark:text-white dark:hover:bg-blue-400 dark:hover:text-white"
+    href="{{ . }}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <i class="bi bi-envelope-heart" aria-hidden="true"></i>
+    <span>Me laisser un petit mot</span>
+    <span class="sr-only"> (ouvre Google Forms dans un nouvel onglet)</span>
+  </a>
   {{ end }}
 </div>
