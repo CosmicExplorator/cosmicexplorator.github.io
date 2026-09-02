@@ -31,14 +31,13 @@ ignoreFiles = ['themes/aafu/content/.*']
     singlePage = false
 
   [[params.accordion]]
-    item = 'about_me'
-    expand = true
+    item = 'articles'
 
   [[params.accordion]]
     item = 'projects'
 
   [[params.accordion]]
-    item = 'articles'
+    item = 'about_me'
 
   [[params.social]]
     icon = 'bi bi-github'
