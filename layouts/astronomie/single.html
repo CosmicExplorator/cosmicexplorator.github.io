@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{ $isGuide := or (eq .Params.type "howto") (eq .Params.type "guide") }}
+<article class="astro-article{{ if $isGuide }} astro-guide{{ end }}">
+  <a class="inline-block mb-4" href="{{ .CurrentSection.RelPermalink }}">← {{ .CurrentSection.LinkTitle }}</a>
+
+  <header class="mb-6">
+    {{ if $isGuide }}<p class="guide-kicker">Fiche pratique</p>{{ end }}
+    <h1 class="top-h1 mb-3">{{ .Title }}</h1>
+    {{ with .Description }}<p class="guide-lead">{{ . }}</p>{{ end }}
+
+    {{ if $isGuide }}
+    <dl class="guide-meta" aria-label="Informations sur la procédure">
+      {{ with .Params.duration }}<div><dt>Durée</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.difficulty }}<div><dt>Niveau</dt><dd>{{ . }}</dd></div>{{ end }}
+      {{ with .Params.steps }}<div><dt>Parcours</dt><dd>{{ . }} étapes</dd></div>{{ end }}
+    </dl>
+    {{ end }}
+  </header>
+
+  {{ if and $isGuide (gt (len .TableOfContents) 0) }}
+  <details class="guide-toc" open>
+    <summary>Dans cette fiche</summary>
+    {{ .TableOfContents }}
+  </details>
+  {{ end }}
+
+  <div class="prose dark:prose-invert guide-content">{{ .Content }}</div>
+  {{ if $isGuide }}<p class="guide-progress" aria-live="polite"></p>{{ end }}
+</article>
+
+{{ if $isGuide }}
+<script>
+  const guideKey = `guide-progress:${window.location.pathname}`;
+  const checks = Array.from(document.querySelectorAll('.guide-content input[type="checkbox"]'));
+  const progress = document.querySelector('.guide-progress');
+  let savedChecks = [];
+  try { savedChecks = JSON.parse(window.localStorage.getItem(guideKey) || '[]'); } catch (_) {}
+
+  const updateProgress = () => {
+    const completed = checks.filter((check) => check.checked).length;
+    if (progress && checks.length) {
+      progress.textContent = `Progression mémorisée sur cet appareil : ${completed}/${checks.length}`;
+    }
+    window.localStorage.setItem(guideKey, JSON.stringify(checks.map((check) => check.checked)));
+  };
+
+  checks.forEach((check, index) => {
+    check.disabled = false;
+    check.checked = Boolean(savedChecks[index]);
+    check.addEventListener('change', updateProgress);
+  });
+  updateProgress();
+
+  document.querySelectorAll('.guide-content pre').forEach((block) => {
+    const button = document.createElement('button');
+    button.className = 'copy-code';
+    button.type = 'button';
+    button.textContent = 'Copier';
+    button.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(block.innerText);
+      button.textContent = 'Copié ✓';
+      window.setTimeout(() => { button.textContent = 'Copier'; }, 1600);
+    });
+    block.appendChild(button);
+  });
+</script>
+{{ end }}
+{{ if .Store.Get "hasMermaid" }}
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: document.documentElement.classList.contains("dark") ? "dark" : "default" });
+</script>
+{{ end }}
+{{ end }}

@@ -2,9 +2,15 @@
 title: "Démarrer une session d’observation"
 description: "Mettre en route l’installation et vérifier qu’elle est prête avant le premier mouvement."
 weight: 15
+type: "howto"
+duration: "15 min"
+difficulty: "Courant"
+steps: 7
 ---
 
-Cette procédure suppose que le profil Ekos et les trains optiques existent déjà. Pour leur création ou leur modification, consulter [Configurer KStars et Ekos avec le serveur INDI](../configurer-kstars-ekos/).
+> **Objectif :** obtenir une installation connectée, contrôlée et prête à déparquer sans risque.
+
+Le profil Ekos et les trains optiques doivent déjà exister. Sinon, commencer par [Configurer KStars et Ekos](../configurer-kstars-ekos/).
 
 ## 1. Installer et sécuriser le matériel
 
@@ -71,7 +77,7 @@ Si un équipement manque, ne pas déparquer la monture. Consulter le [HowTo de r
 
 Les valeurs détaillées des trains restent dans le [HowTo de configuration](../configurer-kstars-ekos/#4-créer-le-train-principal).
 
-## 7. Contrôles avant déparcage
+## 7. Valider avant le déparcage
 
 - [ ] Montage et équilibrage terminés
 - [ ] Câbles libres autour des deux axes

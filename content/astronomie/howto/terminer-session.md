@@ -2,9 +2,13 @@
 title: "Terminer une session d’observation"
 description: "Arrêter proprement les acquisitions, la monture et le serveur INDI."
 weight: 20
+type: "howto"
+duration: "10 min"
+difficulty: "Courant"
+steps: 6
 ---
 
-Cette procédure met l’installation en sécurité et conserve les informations utiles pour la prochaine nuit.
+> **Objectif :** laisser la monture parquée, le matériel protégé et les résultats sauvegardés.
 
 ## 1. Arrêter les opérations en cours
 
@@ -60,7 +64,7 @@ Vérifier ensuite qu’aucun profil `indiserver-*` n’est encore actif.
 - noter les actions à reprendre lors de la prochaine session ;
 - vérifier que les acquisitions importantes sont sauvegardées.
 
-## Checklist rapide
+## Avant de quitter l’installation
 
 - [ ] Acquisition et guidage arrêtés
 - [ ] Images enregistrées

@@ -1,10 +1,13 @@
 ---
-title: "HowTo — Résolution des problèmes"
-description: "Transformer les incidents rencontrés pendant les sessions en solutions vérifiées et réutilisables."
+title: "Résoudre un problème"
+description: "Identifier rapidement un incident et appliquer une solution déjà vérifiée."
 weight: 40
+type: "howto"
+duration: "Selon le problème"
+difficulty: "Diagnostic"
 ---
 
-Cette page capitalise simplement les problèmes rencontrés et les solutions validées pendant les sessions.
+> **Mode d’emploi :** choisissez le symptôme dans le sommaire, appliquez la solution, puis effectuez le contrôle indiqué.
 
 ## Focuser instable via le hub USB
 

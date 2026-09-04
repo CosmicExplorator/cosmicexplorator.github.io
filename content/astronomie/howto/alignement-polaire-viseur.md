@@ -2,9 +2,15 @@
 title: "Alignement polaire au viseur"
 description: "Mettre l’EQ6-R en station avec son viseur polaire."
 weight: 25
+type: "howto"
+duration: "10 min"
+difficulty: "Débutant"
+steps: 5
 ---
 
-Cette méthode permet une mise en station rapide, sans caméra ni ordinateur. Pour les poses longues, elle peut être complétée par [l’alignement polaire avec Ekos](../alignement-polaire-ekos/).
+> **Objectif :** placer Polaris au bon endroit sur le réticule sans caméra ni ordinateur.
+
+Pour les poses longues, compléter ensuite avec [l’alignement polaire avec Ekos](../alignement-polaire-ekos/).
 
 ## 1. Préparer la monture
 
@@ -42,12 +48,12 @@ Pendant cette étape, utiliser uniquement les réglages mécaniques d’altitude
 - noter dans le journal que la méthode au viseur a été utilisée ;
 - pour une pose longue, mesurer l’erreur résiduelle avec Ekos.
 
-## RETEX
+## En cas de problème
 
 - **Problème :** une orientation approximative vers le nord ne suffit pas pour les poses longues.
   - **Solution :** placer Polaris à sa position horaire sur le cercle du réticule, puis affiner avec Ekos si nécessaire.
 
-## Checklist
+## Avant de continuer
 
 - [ ] Monture orientée vers le nord et altitude réglée
 - [ ] Position horaire de Polaris déterminée

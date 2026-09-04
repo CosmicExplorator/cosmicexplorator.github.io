@@ -1,7 +1,8 @@
 ---
-title: "HowTo"
-description: "Procédures pas à pas et solutions validées sur l’installation."
+title: "Guides pratiques"
+linkTitle: "Guides"
+description: "Une action à la fois, avec un contrôle clair à chaque étape."
 weight: 40
 ---
 
-Procédures courtes et reproductibles issues des sessions d’observation.
+Choisissez un objectif et suivez les étapes dans l’ordre. Chaque fiche indique les prérequis, le résultat attendu et les solutions aux problèmes déjà rencontrés.

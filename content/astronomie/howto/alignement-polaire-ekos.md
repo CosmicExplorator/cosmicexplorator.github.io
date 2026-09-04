@@ -2,9 +2,15 @@
 title: "Alignement polaire avec Ekos"
 description: "Mesurer et corriger l’erreur polaire de l’EQ6-R avec l’assistant Ekos."
 weight: 26
+type: "howto"
+duration: "15 à 20 min"
+difficulty: "Intermédiaire"
+steps: 7
 ---
 
-Cette méthode utilise le train de guidage, dont le champ large facilite la résolution astrométrique. Elle peut affiner une première mise en station réalisée avec le [viseur polaire](../alignement-polaire-viseur/).
+> **Objectif :** mesurer puis réduire l’erreur polaire avec trois acquisitions Ekos.
+
+Cette méthode utilise le train de guidage, dont le champ large facilite la résolution astrométrique. Elle affine une première mise en station réalisée avec le [viseur polaire](../alignement-polaire-viseur/).
 
 Elle a permis d’obtenir une erreur polaire totale de **3′23″**.
 
@@ -92,7 +98,7 @@ Cette valeur constitue un bon point de référence pour les prochaines sessions.
 - conserver la valeur finale dans le journal de session ;
 - passer au pointage d’une étoile puis au test de guidage.
 
-## RETEX
+## En cas de problème
 
 - **Problème :** lors de la première nuit, la rotation automatique était trop importante et la monture s’est approchée du pilier.
   - **Solution :** activer le pointage manuel et limiter chaque rotation à `15°`.
@@ -101,7 +107,7 @@ Cette valeur constitue un bon point de référence pour les prochaines sessions.
 - **Problème :** StellarSolver ne résout pas les images de l’EvoGuide.
   - **Solution :** installer les index `4207` à `4210` depuis les options d’alignement.
 
-## Checklist
+## Avant de continuer
 
 - [ ] Monture connectée, parquée et dégagement vérifié
 - [ ] Train EvoGuide + ASI120 sélectionné

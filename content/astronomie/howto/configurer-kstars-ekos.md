@@ -2,9 +2,13 @@
 title: "Configurer KStars et Ekos avec le serveur INDI"
 description: "Créer un profil Ekos distant et les trains optiques de l’observatoire."
 weight: 10
+type: "howto"
+duration: "20 min"
+difficulty: "Intermédiaire"
+steps: 7
 ---
 
-Ce HowTo configure KStars/Ekos pour utiliser le serveur INDI géré par `indi-ansible` sur `telescope.lan`.
+> **Objectif :** connecter KStars au serveur `telescope.lan`, puis créer les deux trains optiques de l’observatoire.
 
 ## Prérequis
 
@@ -92,7 +96,7 @@ Créer le train **EvoGuide 50ED + ASI120MM-S** :
 
 Utiliser ce train pour le **Guidage** et pour un alignement polaire rapide grâce à son champ plus large.
 
-## 6. Vérifier la configuration
+## 6. Valider la configuration
 
 **Chemin :** `KStars → Outils → Ekos → Démarrer INDI → Panneau de contrôle INDI`
 
@@ -103,7 +107,7 @@ Utiliser ce train pour le **Guidage** et pour un alignement polaire rapide grâc
 - [ ] L’ASI120 est sélectionnée pour le guidage.
 - [ ] La monture affiche `Parked` avant le premier mouvement.
 
-## 7. Chemins dans le panneau INDI
+## 7. Retrouver les contrôles INDI
 
 Ouvrir le panneau avec :
 
@@ -125,7 +129,7 @@ Pour enregistrer la position de parcage de l’EQ6-R :
 
 `INDI → EQMod Mount → Gestion des sites → Options de parcage → Courant → Écrire les données`
 
-## Dépannage
+## En cas de problème
 
 Si les coordonnées semblent nulles, suivre d’abord :
 
